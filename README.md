@@ -8,13 +8,13 @@
 
 # Project [Clinica Veterinaria JIREH](https://jireh.vercel.app/)
 
-## Propósito del Proyecto
+## Purpose of the Project
 
-La principal funcionalidad de la aplicación se centra en la agenda y programación de citas, permitiendo a los clientes acceder a la sección de citas para agendar y programar una cita con la clínica. Además, ofrece una tienda en línea integrada para la compra de productos veterinarios.
+The main functionality of the application focuses on scheduling and appointment scheduling, allowing customers to access the appointments section to schedule and schedule an appointment with the clinic. In addition, it offers an integrated online store for the purchase of veterinary products.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-El proyecto está desarrollado utilizando las siguientes tecnologías de React:
+The project is developed using the following React technologies:
 
 - [Emotion](https://emotion.sh/)
 - [Material-UI (MUI)](https://mui.com/) 
@@ -25,7 +25,7 @@ El proyecto está desarrollado utilizando las siguientes tecnologías de React:
 - [React Router DOM](https://reactrouter.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-## Servicios Utilizados
+## Services Used
 
 - [Google reCAPTCHA](https://www.google.com/recaptcha)
 - [Google Analytics](https://analytics.google.com/)

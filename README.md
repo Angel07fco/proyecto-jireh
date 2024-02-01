@@ -17,7 +17,7 @@ La principal funcionalidad de la aplicación se centra en la agenda y programaci
 El proyecto está desarrollado utilizando las siguientes tecnologías de React:
 
 - [Emotion](https://emotion.sh/)
-- [Material-UI (MUI)](https://mui.com/)
+- [Material-UI (MUI)](https://mui.com/) 
 - [Axios](https://axios-http.com/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Helmet](https://helmetjs.github.io/)

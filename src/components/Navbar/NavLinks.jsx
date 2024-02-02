@@ -13,7 +13,7 @@ function NavLinks() {
                 <div key={i}>
                     <div className="px-3 text-left md:cursor-pointer group">
                         <h1
-                            className="py-7 flex justify-between items-center md:pr-0 pr-5 group"
+                            className="py-7 flex justify-between items-center md:pr-0 pr-5 group text-secondaryBlue"
                             onClick={()=>{
                                 heading !== link.name
                                     ? setHeading(link.name)
@@ -40,10 +40,10 @@ function NavLinks() {
                                     <div className="bg-white p-5 grid grid-cols-3 gap-10">
                                         {link.sublinks.map((mysublinks, i)=>(
                                             <div key={i}>
-                                                <h1 className="text-lg font-semibold uppercase">{mysublinks.Head}</h1>
+                                                <h1 className="text-lg font-semibold uppercase text-secondaryBlue">{mysublinks.Head}</h1>
                                                 {mysublinks.sublink.map((slink, i)=>(
-                                                    <li key={i} className="text-sm text-gray-600 my-2.5 ml-2.5">
-                                                        <Link to={slink.link} className="hover:text-blue-500">{slink.name}</Link>
+                                                    <li key={i} className="text-sm text-secondaryBlue my-2.5 ml-2.5">
+                                                        <Link to={slink.link} className="hover:text-primaryBlue hover:underline">{slink.name}</Link>
                                                     </li>
                                                 ))}
                                             </div>

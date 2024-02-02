@@ -1,5 +1,3 @@
-#root {
-  margin: 0 auto;
-  padding: 0 auto;
-  box-sizing: border-box;
+.App {
+  font-family: 'Roboto', sans-serif;
 }

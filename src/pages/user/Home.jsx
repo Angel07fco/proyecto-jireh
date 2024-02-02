@@ -1,11 +1,14 @@
-import Navbar from "../../components/Navbar/Navbar"
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Home() {
   return (
-    <div>
+      <div>
         <Navbar />
-        <img src="https://static.vecteezy.com/system/resources/previews/000/696/278/non_2x/textured-black-background-vector.jpg" alt="" />
-    </div>
+        <Header />
+        <Footer />
+      </div>
   )
 }
 

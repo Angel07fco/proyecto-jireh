@@ -1,6 +1,6 @@
 export const links = [
     {
-        name: "Men",
+        name: "Servicios",
         submenu: true,
         sublinks:[
             {
@@ -56,7 +56,7 @@ export const links = [
         ]
     },
     {
-        name: "Women",
+        name: "Tienda",
         submenu: true,
         sublinks:[
             {
@@ -101,62 +101,6 @@ export const links = [
             },
             {
                 Head: "Women 5",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
-            }
-        ]
-    },
-    {
-        name: "Kid´s",
-        submenu: true,
-        sublinks:[
-            {
-                Head: "Kid´s 1",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
-            },
-            {
-                Head: "Kid´s 2",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
-            },
-            {
-                Head: "Kid´s 3",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
-            },
-            {
-                Head: "Kid´s 4",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
-            },
-            {
-                Head: "Kid´s 5",
                 sublink: [
                     { name: "T-shirt", link: "/" },
                     { name: "Casual shirts", link: "/" },

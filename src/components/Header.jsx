@@ -42,7 +42,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div>
-                        <h2 className='text-textoNota text-xs'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electronico se te proporcionara mas informacion acerca de lo que representa JIREH para la comunidad animal.</h2>
+                        <h2 className='text-textoNota text-xs'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electronico se te proporcionara mas informacion acerca de lo que representa JIREH Community para los amantes de los animales.</h2>
                     </div>
                 </div>
             </div>

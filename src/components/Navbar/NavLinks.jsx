@@ -22,7 +22,7 @@ function NavLinks() {
                             }}
                         >
                             {link.name}
-                            <span className='md:hidden inline'>
+                            <span className='md:hidden inline border border-secondaryBlue rounded-lg p-1'>
                                 {
                                     heading === link.name ? <KeyboardArrowUpIcon />: <KeyboardArrowDownIcon />
                                 }
@@ -71,7 +71,7 @@ function NavLinks() {
                                                 }
                                         >
                                             {slinks.Head}
-                                            <span>
+                                            <span className='border border-primaryBlue rounded-lg p-1'>
                                                 {
                                                     subHeading === slinks.Head ? <KeyboardArrowUpIcon />: <KeyboardArrowDownIcon />
                                                 }

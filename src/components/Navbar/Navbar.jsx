@@ -1,4 +1,4 @@
-import Logo from "../../assets/images/jirehM.jpg";
+import Logo from "../../assets/images/jirehM.png";
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ function Navbar() {
             </nav>
             <div className="flex items-center font-medium justify-around">
                 <div className="z-50 pl-5 pr-5 md:w-auto w-full flex justify-between items-center">
-                    <img src={Logo} alt="Logo JIREH" className="md:cursor-pointer" style={{width: "140px", height:"80px"}} />
+                    <img src={Logo} alt="Logo JIREH" className="md:cursor-pointer" style={{width: "160px", height:"60px"}} />
                     <div onClick={()=>setOpen(!open)} className="md:hidden" >
                         {
                             open
@@ -60,7 +60,7 @@ function Navbar() {
                     </li>
                 </ul>
                 <div className="md:block hidden">
-                    <Button texto="Pide cita" />
+                    <Button texto="Pide tu cita" bg="secondaryBlue" textoColor="white" />
                 </div>
                 {/* Mobile Nav */}
                 <ul className={`
@@ -83,15 +83,15 @@ function Navbar() {
                         </Link>
                     </li>
                     <div className="py-5">
-                        <Button texto="Pide cita" />
+                        <Button texto="Pide tu cita" bg="secondaryBlue" textoColor="white" />
                     </div>
-                    <li>
-                        <Link to="/" className="text-blue-500 py-3 px-3 inline-block">
+                    <li className="bg-primaryBlue mr-4 rounded-md">
+                        <Link to="/" className="text-white py-3 px-3 inline-block">
                             Iniciar Sesión
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/" className="text-blue-500 py-3 px-3 inline-block">
+                    <li className="border border-primaryBlue mr-4 rounded-md mt-4">
+                        <Link to="/" className="text-primaryBlue py-3 px-3 inline-block">
                             Crear una cuenta
                         </Link>
                     </li>

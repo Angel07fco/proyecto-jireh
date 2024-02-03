@@ -14,15 +14,15 @@ const Header = () => {
         return () => clearInterval(intervalId);
     });
     return (
-        <div className="bg-primaryBlue md:pt-36 grid grid-cols-2">
-            <div className='mr-5'>
-                <div className="mt-16 ml-44">
-                    <h1 className="text-secondaryBlue font-bold text-4xl">En JIREH nos preocupamos por el bienestar de tu(s) amiguit@(s):</h1>
+        <div className="bg-primaryBlue md:pt-36 grid md:grid-cols-2">
+            <div className='md:mr-20 mx-10'>
+                <div className="md:mt-16 mt-8 md:ml-28">
+                    <h1 className="text-secondaryBlue font-bold md:text-4xl text-xl">En JIREH nos preocupamos por el bienestar de tu(s) amiguit@(s):</h1>
                     <span>
-                        <span className='text-secondaryBlue font-bold text-4xl'>{mascotas[index]}</span>
+                        <span className='text-secondaryBlue font-bold md:text-4xl text-xl'>{mascotas[index]}</span>
                     </span>
                 </div>
-                <div className='ml-44 mt-10 bg-white rounded-xl py-4 px-8'>
+                <div className='md:ml-28 mt-10 bg-white rounded-xl py-4 px-8 mb-10'>
                     <div className='flex items-center justify-between'>
                         <h1 className='text-secondaryBlue text-xl font-bold'>Quieres saber mas de JIREH</h1>
                         <div className='flex items-center justify-between'>
@@ -47,7 +47,7 @@ const Header = () => {
                 </div>
             </div>
             <div>
-                <img src="https://res.cloudinary.com/dl8odylct/image/upload/v1706904292/perros_rbacpf.png" alt="img-mascota" className='mt-5' />
+                <img src="https://res.cloudinary.com/dl8odylct/image/upload/v1706904292/perros_rbacpf.png" alt="img-mascota" className='md:mt-5 md:block hidden' />
             </div>
         </div>
     )

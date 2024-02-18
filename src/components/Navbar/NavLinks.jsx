@@ -12,7 +12,8 @@ function NavLinks() {
             {links.map((link, i) => (
                 <div key={i}>
                     <div className="px-3 text-left md:cursor-pointer group">
-                        <h1
+                        <Link
+                            to={link.link}
                             className="py-7 flex justify-between items-center md:pr-0 pr-5 group text-secondaryBlue"
                             onClick={()=>{
                                 heading !== link.name
@@ -30,10 +31,10 @@ function NavLinks() {
                             <span className='md:mt-1 md:ml-2 md:block hidden group-hover:rotate-180 group-hover:-mt-2'>
                                 <KeyboardArrowDownIcon />
                             </span>
-                        </h1>
+                        </Link>
                         {link.submenu && (
                             <div>
-                                <div className="absolute top-30 hidden group-hover:md:block hover:md:block">
+                                <div className="absolute shadow-lg top-30 hidden group-hover:md:block hover:md:block">
                                     <div className="py-3">
                                         <div className="w-4 h-4 left-3 absolute mt-1 bg-white rotate-45"></div>
                                     </div>

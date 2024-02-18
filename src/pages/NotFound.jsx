@@ -1,7 +1,7 @@
 
 function NotFound() {
   return (
-    <div>404NotFound</div>
+    <div className="pt-44">404NotFound</div>
   )
 }
 

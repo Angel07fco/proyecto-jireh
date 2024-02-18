@@ -24,14 +24,14 @@ const Header = () => {
                 </div>
                 <div className='md:ml-28 mt-10 bg-white rounded-xl py-4 px-8 mb-10'>
                     <div className='flex items-center justify-between'>
-                        <h1 className='text-secondaryBlue text-xl font-bold'>Quieres saber mas de JIREH</h1>
+                        <h1 className='text-secondaryBlue text-xl font-bold'>Quieres saber más de JIREH</h1>
                         <div className='flex items-center justify-between'>
                             <CalendarMonthIcon fontSize="small" />
                             <h2 className='text-secondaryBlue hover:underline cursor-pointer'>¡Pide tu cita ahora!</h2>
                         </div>
                     </div>
                     <div className='border border-primaryBlue flex flex-row items-center justify-between p-3 rounded-xl mt-2 mb-2'>
-                        <input placeholder='Ingrese su correo electronico' className='w-full h-8 border border-none' />
+                        <input placeholder='Ingrese su correo electrónico' className='w-full h-8 border border-none' />
                         <div className='flex flex-row'>
                             <div className='bg-green py-2 px-2 rounded-md mr-2 cursor-pointer'>
                                 <NearMeOutlinedIcon />
@@ -42,7 +42,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div>
-                        <h2 className='text-textoNota text-xs'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electronico se te proporcionara mas informacion acerca de lo que representa JIREH Community para los amantes de los animales.</h2>
+                        <h2 className='text-textoNota text-xs'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electrónico se te proporcionará más información acerca de lo que representa JIREH Community para los amantes de los animales.</h2>
                     </div>
                 </div>
             </div>

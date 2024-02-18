@@ -9,18 +9,17 @@ import Button from './Button';
 import Faq from './Faq';
 
 function Footer() {
-    
     return (
         <footer className="bg-secondaryBlue">
             {/* Navbar section 1 */}
-            <div className='md:mx-40 mx-14 py-10 grid md:grid-cols-3'>
+            <div className='md:mx-40 mx-14 py-10 md:grid md:grid-cols-3'>
                 {/* Navbar section 1 CONTACT */}
                 <div>
                     <h1 className='text-primaryBlue font-bold text-xl'>CONTÁCTANOS</h1>
                     <div className='pr-20'>
                         <div className='flex flex-row items-center mt-10'>
                             <LocationOnIcon className='text-primaryBlue' />
-                            <h1 className='text-primaryBlue ml-3'>Bulevar Adolfo Lopez S/N Colonia Aviación Civil</h1>
+                            <h1 className='text-primaryBlue ml-3'>Bulevar Adolfo López S/N Colonia Aviación Civil</h1>
                         </div>
                         <div className='flex flex-row items-center mt-5'>
                             <PhoneIcon className='text-primaryBlue' />
@@ -38,11 +37,11 @@ function Footer() {
                         <h1 className='text-primaryBlue font-bold text-xl'>Para los amantes de los animales</h1>
                         <div className='text-primaryBlue mt-5 cursor-pointer'>
                             <p className='hover:underline mt-2 text-sm'>Nuestros servicios</p>
-                            <p className='hover:underline mt-2 text-sm'>Consultas</p>
+                            <p className='hover:underline mt-2 text-sm'>Citas</p>
                             <p className='hover:underline mt-2 text-sm'>Planes de salud</p>
                             <p className='hover:underline mt-2 text-sm'>Testimonios</p>
                             <p className='hover:underline mt-2 text-sm'>Galería</p>
-                            <p className='hover:underline mt-2 text-sm'>Faq (Preguntas Frecuentes)</p>
+                            <p className='hover:underline mt-2 text-sm'>FAQ (Preguntas Frecuentes)</p>
                             <p className='hover:underline mt-2 text-sm'>Blog</p>
                             <p className='hover:underline mt-2 text-sm'>Comentarios</p>
                         </div>
@@ -63,15 +62,14 @@ function Footer() {
                 </div>
                 {/* Navbar section FORM AND FAQ */}
                 <div className='md:pl-5 md:mt-0 mt-10'>
-                    <Button texto="URGENCIAS" bg="primaryBlue" textoColor="secundaryBlue" />
-                    <div className='flex flex-row mt-5'>
-                        <input className='w-full border border-primaryBlue bg-transparent p-2 rounded-md' type='email' placeholder='Ingrese su correo electronico' />
+                    <div className='flex flex-row'>
+                        <input className='w-full border border-primaryBlue bg-transparent p-2 rounded-md text-primaryBlue' type='email' placeholder='Ingrese su correo electrónico' />
                         <div className='bg-primaryBlue py-2 px-2 rounded-md mr-2 cursor-pointer ml-1'>
                             <NearMeOutlinedIcon />
                         </div>
                     </div>
-                    <h2 className='text-textoNota text-xs mt-2'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electronico se te proporcionara mas informacion acerca de lo que representa JIREH Community para los amantes de los animales.</h2>
-                    <h1 className='mt-4 text-primaryBlue font-bold text-xl'>Faq (Preguntas Frecuentes)</h1>
+                    <h2 className='text-textoNota text-xs mt-2'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electrónico se te proporcionará más información acerca de lo que representa JIREH Community para los amantes de los animales.</h2>
+                    <h1 className='mt-4 text-primaryBlue font-bold text-xl'>FAQ (Preguntas Frecuentes)</h1>
                     <Faq
                         question="¿Cómo puedo agendar una cita?"
                         reply="Respuesta..."
@@ -84,29 +82,30 @@ function Footer() {
                         question="¿Ofrecen servicios de urgencias y cómo puedo contactarlos?"
                         reply="Respuesta..."
                     />
+                    <Button texto="Ver más" bg="primaryBlue" textoColor="secundaryBlue" />
                 </div>
             </div>
             {/* Navbar section 2 */}
             <div className="bg-primaryBlue py-3">
                 <div className='flex items-center md:mx-40 mx-14'>
                     <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Aviso de Privacidad</h1>
-                    <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Terminos y Condiciones</h1>
-                    <h1 className="text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Politicas de Cookies</h1>
+                    <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Términos y Condiciones</h1>
+                    <h1 className="text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Políticas de Cookies</h1>
                 </div>
             </div>
 
             {/* Navbar section 3 */}
-            <div className="bg-green">
+            <div className="bg-secondaryBlue">
                 <div className='flex items-center justify-between md:mx-40 mx-14 py-3'>
-                    <h1 className="text-secundaryBlue font-semibold text-sm">2024 ©JIREH Todos los derechos reservados</h1>
+                    <h1 className="text-primaryBlue font-semibold text-sm">2024 ©JIREH Todos los derechos reservados</h1>
                     <div className='flex'>
-                        <div className='bg-white w-11 h-11 rounded-full flex items-center justify-center mr-4 cursor-pointer'>
+                        <div className='bg-primaryBlue w-11 h-11 rounded-full flex items-center justify-center mr-4 cursor-pointer'>
                             <WhatsAppIcon className='text-secundaryBlue' />
                         </div>
-                        <div className='bg-white w-11 h-11 rounded-full flex items-center justify-center mr-4 cursor-pointer'>
+                        <div className='bg-primaryBlue w-11 h-11 rounded-full flex items-center justify-center mr-4 cursor-pointer'>
                             <FacebookIcon className='text-secundaryBlue' />
                         </div>
-                        <div className='bg-white w-11 h-11 rounded-full flex items-center justify-center cursor-pointer'>
+                        <div className='bg-primaryBlue w-11 h-11 rounded-full flex items-center justify-center cursor-pointer'>
                             <InstagramIcon className='text-secundaryBlue' />
                         </div>
                     </div>

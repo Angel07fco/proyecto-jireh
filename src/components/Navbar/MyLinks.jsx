@@ -1,6 +1,7 @@
 export const links = [
     {
         name: "Servicios",
+        link: "/servicios",
         submenu: true,
         sublinks:[
             {
@@ -57,6 +58,7 @@ export const links = [
     },
     {
         name: "Tienda",
+        link: "/tienda",
         submenu: true,
         sublinks:[
             {

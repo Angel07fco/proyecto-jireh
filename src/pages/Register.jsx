@@ -1,11 +1,10 @@
-import { TextField, Button, FormControlLabel, Checkbox, IconButton, InputAdornment } from "@mui/material";
+import { TextField, Button, IconButton, InputAdornment } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ValidateOTP from "../components/ValidateOTP";
 import Layout from "./user/Layout";
 
@@ -13,13 +12,8 @@ function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { signup, isRegister, errors: signinErrors } = useAuth();
   const onSubmit = handleSubmit((data) => {
-    if (isCaptchaCompleted) {
-      console.log(data);
-      signup(data);
-      setMsjErrorC("");
-    } else {
-      setMsjErrorC("Por favor, introduce un captcha correcto.");
-    }
+    console.log(data);
+    signup(data);
   });
 
   const [found, setFound] = useState(false);
@@ -35,16 +29,6 @@ function Register() {
       return () => clearTimeout(timeoutId);
     }
   }, [isRegister]);
-
-  const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
-  const [msjErrorC, setMsjErrorC] = useState("");
-  const captcha = useRef(null);
-  const onChange = () => {
-    if (captcha.current.getValue()) {
-      setIsCaptchaCompleted(true);
-      setMsjErrorC("");
-    }
-  };
 
   const [showPassword1, setShowPassword1] = useState(false);
   const togglePasswordVisibility1 = () => {
@@ -130,14 +114,9 @@ function Register() {
               </div>
             </div>
 
-            <FormControlLabel control={<Checkbox required />} label="Terminos y condiciones" className="my-5" />
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "30px" }}>
-              <ReCAPTCHA
-                ref={captcha}
-                sitekey="6LdmJVQpAAAAAC9oV3K9_U3NXeO3h-fHFbPUTWvJ"
-                onChange={onChange}
-              />
-              <span className="font-bold text-red-500">{msjErrorC}</span>
+            <div className="flex flex-row mt-5">
+              <input type="checkbox" required />
+              <Link to="/terminos&condiciones" className="ml-2 hover:text-secondaryBlue hover:underline">Terminos y Condiciones</Link>
             </div>
 
             <div className="flex justify-end mt-6">

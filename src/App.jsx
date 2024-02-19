@@ -14,6 +14,7 @@ import Contacto from "./pages/user/Contacto";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Password from "./pages/Password";
+import TerminosCondiciones from "./pages/TerminosCondiciones";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path='/iniciar-sesion' element={<Login />} />
       <Route path='/registro' element={<Register />} />
       <Route path='/recuperar-contraseña' element={<Password />} />
+      <Route path='/terminos&condiciones' element={<TerminosCondiciones />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   )

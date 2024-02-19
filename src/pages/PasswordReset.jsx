@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function PasswordReset({ dataU }) {
+function PasswordReset({ dataU, subject, messageU }) {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const { sendPasswordReset, passReset, errors: signinErrors } = useAuth();
   const onSubmit = handleSubmit((data) => {
@@ -36,8 +36,8 @@ function PasswordReset({ dataU }) {
   };
   return (
     <div>
-      <h1 className="text-2xl font-bold md:mx-24">¡Actualizar mi contraseña!</h1>
-      <h5 className="text-lg md:mx-24 my-6">¡Por favor! ingresa una nueva contraseña.</h5>
+      <h1 className="text-2xl font-bold md:mx-24">¡{subject}!</h1>
+      <h5 className="text-lg md:mx-24 my-6">{messageU}</h5>
       {signinErrors && (
         <div className="bg-red-500 my-5 p-4 text-white md:mx-24" style={{ marginTop: "10px", marginBottom: "20px" }}>
           <span className="font-bold">Error 400: </span>{signinErrors}

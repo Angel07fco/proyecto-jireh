@@ -34,7 +34,7 @@ function Password() {
       <div className="md:pt-40 pt-10 md:px-96 px-20 mb-10">
         {openCircular
           ?
-          <PasswordReset dataU={email} />
+          <PasswordReset dataU={email} subject="Actualizar mi contraseña" messageU="¡Por favor! ingresa una nueva contraseña." />
           :
             <div className="md:mx-24">
               <h2 className="text-2xl font-bold">¡Recuperación de Contraseña!</h2>

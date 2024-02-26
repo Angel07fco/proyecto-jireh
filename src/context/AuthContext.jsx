@@ -13,20 +13,13 @@ export const useAuth = () => {
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [emailVerify, setEmailVerify] = useState(null);
-    const [codePass, setCodePass] = useState(null);
-    const [codeEmail, setCodeEmail] = useState(null);
-    const [passReset, setPassReset] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [isRegister, setIsRegister] = useState(false);
     const [errors, setErrors] = useState(null);
+    const [response, setResponse] = useState(null);
 
     const signup = async (user) => {
         try {
             const res = await registerRequest(user);
-            console.log(res);
-            setUser(res.data);
-            setIsRegister(true);
+            setResponse(res.data.msj);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -38,7 +31,7 @@ export const AuthProvider = ({children}) => {
             const res = await loginRequest(user);
             console.log(res);
             setUser(res.data);
-            setIsAuthenticated(true);
+            setResponse(res.data.msj);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -49,7 +42,7 @@ export const AuthProvider = ({children}) => {
         try {
             const res = await verifyEmail(user);
             console.log(res);
-            setEmailVerify(res.data);
+            setResponse(res.data.msj);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -60,7 +53,7 @@ export const AuthProvider = ({children}) => {
         try {
             const res = await codePassReset(user);
             console.log(res);
-            setCodePass(res.data);
+            setResponse(res.data.msj);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -71,7 +64,7 @@ export const AuthProvider = ({children}) => {
         try {
             const res = await passwordReset(user);
             console.log(res);
-            setPassReset(res.data);
+            setResponse(res.data.msj);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -82,7 +75,7 @@ export const AuthProvider = ({children}) => {
         try {
             const res = await codeverifyEmail(user);
             console.log(res);
-            setCodeEmail(res.data);
+            setResponse(res.data.msj);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -92,11 +85,20 @@ export const AuthProvider = ({children}) => {
     useEffect(() => {
         if (errors && errors.length > 0) {
             const timer = setTimeout(() => {
-                setErrors(null); // Reiniciar los errores a null después de 3 segundos
-            }, 3000);
+                setErrors(null);
+            }, 5000);
             return () => clearTimeout(timer);
         }
     }, [errors]);
+
+    useEffect(() => {
+        if (response && response.length > 0) {
+            const timer = setTimeout(() => {
+                setResponse(null);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [response]);
 
     return (
         <AuthContext.Provider
@@ -107,14 +109,9 @@ export const AuthProvider = ({children}) => {
                 sendCodePass,
                 sendCodeEmail,
                 sendPasswordReset,
-                passReset,
-                codeEmail,
-                codePass,
                 user,
-                isRegister,
-                emailVerify,
-                isAuthenticated,
-                errors
+                errors,
+                response
             }}
         >
             {children}

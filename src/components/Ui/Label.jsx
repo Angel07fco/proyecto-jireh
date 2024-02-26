@@ -1,4 +1,4 @@
-export function Label({children, ...props}) {
+const Label = ({children, ...props}) => {
     return (
         <label
             className="block text-sm font-medium leading-6 text-gray-900"
@@ -8,3 +8,5 @@ export function Label({children, ...props}) {
         </label>
     );
 }
+
+export default Label;

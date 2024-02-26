@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useState } from "react";
-import Button from "../Button";
+import Button from "../Ui/Button";
 
 function Navbar() {
     const [open, setOpen] = useState(false);

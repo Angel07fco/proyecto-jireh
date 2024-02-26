@@ -33,7 +33,7 @@ const Header = () => {
                     <div className='border border-primaryBlue flex flex-row items-center justify-between p-3 rounded-xl mt-2 mb-2'>
                         <input placeholder='Ingrese su correo electrónico' className='w-full h-8 border border-none' />
                         <div className='flex flex-row'>
-                            <div className='bg-green py-2 px-2 rounded-md mr-2 cursor-pointer'>
+                            <div className='bg-verde py-2 px-2 rounded-md mr-2 cursor-pointer'>
                                 <NearMeOutlinedIcon />
                             </div>
                             <div className='bg-primaryBlue py-2 px-2 rounded-md cursor-not-allowed'>

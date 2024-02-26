@@ -15,6 +15,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Password from "./pages/Password";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
+import ConfirmAccount from "./pages/ConfirmAccount";
+import UnlockAccount from "./pages/UnlockAccount";
 
 function App() {
   return (
@@ -28,7 +30,9 @@ function App() {
       <Route path='/quienes-somos' element={<QuienesSomos />} />
       <Route path='/contacto' element={<Contacto />} />
       <Route path='/iniciar-sesion' element={<Login />} />
+      <Route path='/desbloquear-cuenta' element={<UnlockAccount />} />
       <Route path='/registro' element={<Register />} />
+      <Route path='/confirmar-cuenta' element={<ConfirmAccount />} />
       <Route path='/recuperar-contraseña' element={<Password />} />
       <Route path='/terminos&condiciones' element={<TerminosCondiciones />} />
       <Route path='*' element={<NotFound />} />

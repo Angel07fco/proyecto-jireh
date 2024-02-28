@@ -26,7 +26,7 @@ function App() {
       <Route path='/servicios' element={<Servicios />} />
       <Route path='/servicio-seleccionado' element={<ServicioSeleccionado />} />
       <Route path='/tienda' element={<Tienda />} />
-      <Route path='/producto-seleccionado' element={<ProductoSeleccionado />} />
+      <Route path='/producto-seleccionado/:nombre' element={<ProductoSeleccionado />} />
       <Route path='/quienes-somos' element={<QuienesSomos />} />
       <Route path='/contacto' element={<Contacto />} />
       <Route path='/iniciar-sesion' element={<Login />} />

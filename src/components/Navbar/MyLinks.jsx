@@ -62,53 +62,66 @@ export const links = [
         submenu: true,
         sublinks:[
             {
-                Head: "Women 1",
+                Head: "Alimentos",
                 sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
                 ]
             },
             {
-                Head: "Women 2",
+                Head: "Medicamentos",
                 sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
                 ]
             },
             {
-                Head: "Women 3",
+                Head: "Tratamientos",
                 sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
                 ]
             },
             {
-                Head: "Women 4",
+                Head: "Higiene y Cuiadado",
                 sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
                 ]
             },
             {
-                Head: "Women 5",
+                Head: "Accesorios",
                 sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
+                ]
+            },
+            {
+                Head: "Limpieza",
+                sublink: [
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
+                ]
+            },
+            {
+                Head: "Viaje y Transporte",
+                sublink: [
+                    { name: "Domestico", link: "/" },
+                    { name: "Granja", link: "/" },
+                    { name: "Acuaticos", link: "/" },
+                    { name: "Exoticos", link: "/" },
                 ]
             }
         ]

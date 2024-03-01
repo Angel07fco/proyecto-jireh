@@ -3,7 +3,7 @@ import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useState, useEffect } from 'react';
 
-const Header = () => {
+const HeaderHome = () => {
     const [index, setIndex] = useState(0);
     const mascotas = ['🏠 Animales de domesticos:', '🐕 Perro', '🐈 Gato', '🐇 Conejo', '🐁 Hamster', '🐢 Tortuga', '🐟 Pez', '🦜 Loro', '🚜 Animales de granja:', '🐎 Caballo', '🐄 Vaca', '🐂 Toro', '🐏 Oveja', '🐖 Cerdo', '🐓 Gallo', '🐔 Gallina', '🦚 Pavo Real' ];
     useEffect(() => {
@@ -53,4 +53,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default HeaderHome;

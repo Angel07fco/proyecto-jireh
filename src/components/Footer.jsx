@@ -5,6 +5,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { Link } from "react-router-dom";
 import Button from './Ui/Button';
 import Faq from './Faq';
 
@@ -38,7 +39,6 @@ function Footer() {
                         <div className='text-primaryBlue mt-5 cursor-pointer'>
                             <p className='hover:underline mt-2 text-sm'>Nuestros servicios</p>
                             <p className='hover:underline mt-2 text-sm'>Citas</p>
-                            <p className='hover:underline mt-2 text-sm'>Planes de salud</p>
                             <p className='hover:underline mt-2 text-sm'>Testimonios</p>
                             <p className='hover:underline mt-2 text-sm'>Galería</p>
                             <p className='hover:underline mt-2 text-sm'>FAQ (Preguntas Frecuentes)</p>
@@ -88,9 +88,15 @@ function Footer() {
             {/* Navbar section 2 */}
             <div className="bg-primaryBlue py-3">
                 <div className='flex items-center md:mx-40 mx-14'>
-                    <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Aviso de Privacidad</h1>
-                    <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Términos y Condiciones</h1>
-                    <h1 className="text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Políticas de Cookies</h1>
+                    <Link to="/aviso&de&privacidad">
+                        <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Aviso de Privacidad</h1>
+                    </Link>
+                    <Link to="/terminos&condiciones">
+                        <h1 className="mr-4 text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Términos y Condiciones</h1>
+                    </Link>
+                    <Link to="/politica&de&cookies">
+                        <h1 className="text-secundaryBlue font-semibold text-sm cursor-pointer hover:underline">Políticas de Cookies</h1>
+                    </Link>
                 </div>
             </div>
 

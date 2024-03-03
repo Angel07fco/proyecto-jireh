@@ -4,9 +4,7 @@ import FormLogin from "../components/Form/FormLogin";
 function Login() {
   return (
     <Layout>
-      <div className="md:pt-32">
-        <FormLogin />
-      </div>
+      <FormLogin />
     </Layout>
   )
 }

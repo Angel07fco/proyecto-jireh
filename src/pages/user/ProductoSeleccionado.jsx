@@ -27,7 +27,7 @@ function ProductoSeleccionado() {
     };
     return (
         <Layout>
-            <div className="md:pt-40 mb-10">
+            <div className="md:pt-16 mb-10">
                 <div className='mx-40 flex flex-row'>
                     <div className='w-5/12 px-10'>
                         <CarrouselImage images={productoSeleccionado.imagen} />

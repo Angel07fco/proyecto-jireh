@@ -4,9 +4,7 @@ import Layout from "./user/Layout";
 function Register() {
   return (
     <Layout>
-      <div className="md:pt-32">
-          <Formulario />
-      </div>
+      <Formulario />
     </Layout>
   )
 }

@@ -5,7 +5,7 @@ function Layout({ children }) {
     return (
         <>
             <Navbar />
-                <div>
+                <div className="md:pt-32">
                     {children}
                 </div>
             <Footer />

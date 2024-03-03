@@ -14,7 +14,7 @@ const HeaderHome = () => {
         return () => clearInterval(intervalId);
     });
     return (
-        <div className="bg-primaryBlue md:pt-36 grid md:grid-cols-2">
+        <div className="bg-primaryBlue grid md:grid-cols-2">
             <div className='md:mr-20 mx-10'>
                 <div className="md:mt-16 mt-8 md:ml-28">
                     <h1 className="text-secondaryBlue font-bold md:text-4xl text-xl">En JIREH nos preocupamos por el bienestar de tu(s) amiguit@(s):</h1>

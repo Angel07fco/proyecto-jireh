@@ -4,9 +4,7 @@ import Layout from "./user/Layout";
 function ConfirmAccount() {
     return (
         <Layout>
-            <div className="md:pt-32">
-                <FormConfirmAccount />
-            </div>
+            <FormConfirmAccount />
         </Layout>
     )
 }

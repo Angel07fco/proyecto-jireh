@@ -162,7 +162,7 @@ function FormLogin() {
                 <div className="flex justify-end mt-6">
                     <span>
                         ¿No puedes acceder?
-                        <Link to="/recuperar-contraseña" className="text-secondaryBlue hover:underline ml-1">Recuperar contraseña</Link>
+                        <Link to="/metodo-recuperar" className="text-secondaryBlue hover:underline ml-1">Recuperar contraseña</Link>
                     </span>
                 </div>
             </div>

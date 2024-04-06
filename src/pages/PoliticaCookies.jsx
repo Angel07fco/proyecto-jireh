@@ -5,7 +5,7 @@ import Layout from "./user/Layout";
 function PoliticaCookies() {
     return (
         <Layout>
-            <Header texto="POLÍTICA DE COOKIES" />
+            <Header texto="POLÍTICA DE COOKIES" linkText="Política de cookies" />
             <section className="md:mx-40 mx-10 my-10 space-y-6">
                 <h1 className="text-lg font-normal">En la Clínica Veterinaria Jireh, nos preocupamos por ofrecer la mejor experiencia a nuestros usuarios, y es por eso que utilizamos cookies y tecnologías similares en nuestro sitio web. Estas herramientas nos permiten brindar servicios y funcionalidades que mejoran la navegación y personalizan la interacción en nuestras páginas.</h1>
                 <h1 className="text-lg font-normal">Al aceptar el uso de cookies, estás permitiendo que aprovechemos al máximo estas funcionalidades para adaptarnos a tus preferencias y necesidades. Nuestra Política de Cookies está diseñada para informarte sobre cómo utilizamos estas tecnologías y cuáles son tus opciones al respecto.</h1>

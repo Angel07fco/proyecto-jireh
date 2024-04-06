@@ -1,6 +1,6 @@
 const Success = ({mensaje}) => {
     return (
-        <div className="fixed bottom-0 left-0 right-0">
+        <div className="fixed bottom-0 left-0 right-0 z-50">
             <div className="w-full text-white bg-emerald-500">
                 <div className="container flex items-center justify-between px-6 py-4 mx-auto">
                     <div className="flex">

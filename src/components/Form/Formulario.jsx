@@ -11,7 +11,7 @@ import Danger from "../Ui/Alertas/Danger";
 import Success from "../Ui/Alertas/Success";
 import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
-const initialForm = { user: "", email: "", phone: "", password: "" };
+let initialForm = { user: "", email: "", phone: "", password: "" };
 
 const validationsForm = (form) => {
     let errors = {};
@@ -53,14 +53,14 @@ const validationsForm = (form) => {
 
 function Formulario() {
 
-    const { form, errors, loading, responseErrors, responseSuccess, handleChange, handleBlur, handleSubmit }
-    = useForm(initialForm, validationsForm, 1);
-
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
+
+    const { form, errors, loading, responseErrors, responseSuccess, handleChange, handleBlur, handleSubmit }
+    = useForm(initialForm, validationsForm, 1);
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -142,10 +142,11 @@ function Formulario() {
                             <PasswordStrengthMeter password={form.password} />
                             {errors.password && <p className="text-red-500 text-xs font-bold">{errors.password}</p>}
                         </div>
-                        <div className="flex flex-row mt-5">
-                            <input type="checkbox" required />
-                            <Link to="/terminos&condiciones" className="ml-2 hover:text-secondaryBlue hover:underline">He leído y acepto los Términos y Condiciones</Link>
-                        </div>
+                    </div>
+
+                    <div className="flex flex-row mt-5">
+                        <input type="checkbox" required />
+                        <Link to="/terminos&condiciones" className="ml-2 hover:text-secondaryBlue hover:underline">He leído y acepto los Términos y Condiciones</Link>
                     </div>
 
                     <div className="flex justify-end mt-6">

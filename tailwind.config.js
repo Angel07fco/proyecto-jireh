@@ -14,7 +14,9 @@ export default {
         alertSuccess: '#f0fdf4',
         alertTextSuccess: '#166534',
         alertAdvertention: '#fefce8',
-        alertTextAdvertention: '#ae7827'
+        alertTextAdvertention: '#ae7827',
+        darkPurple: "#081A51",
+        lightWhite: "rgba(255,255,255,0.18)"
       },
     },
   },

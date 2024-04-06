@@ -4,7 +4,7 @@ import Layout from "./user/Layout";
 function AvisoPrivacidad() {
     return (
         <Layout>
-            <Header texto="AVISO DE PRIVACIDAD" />
+            <Header texto="AVISO DE PRIVACIDAD" linkText="Aviso de privacidad" />
             <section className="md:mx-40 mx-10 my-10 space-y-6">
                 <h1 className="text-lg font-normal"><span className="font-bold">Eddie Hernández Vidal</span>, mejor conocido como <span className="font-bold">Clinica Veterinaria Jireh</span>, con domicilio en calle Bulevar Adolfo Lopez, colonia Aviación Civil, ciudad Huejutla de Reyes, municipio o delegación Huejutla de Reyes, c.p. 43000, en la entidad de Hidalgo, país México, <span className="font-bold">es el responsable del uso y protección de sus datos personales</span>, y al respecto le informamos lo siguiente:</h1>
 

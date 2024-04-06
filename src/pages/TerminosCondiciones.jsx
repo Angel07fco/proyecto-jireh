@@ -4,7 +4,7 @@ import Layout from "./user/Layout";
 function TeeminosCondiciones() {
     return (
         <Layout>
-            <Header texto="TÉRMINOS Y CONDICIONES" />
+            <Header texto="TÉRMINOS Y CONDICIONES" linkText="Términos y condiciones" />
             <section className="md:mx-40 mx-10 my-10 space-y-6">
                 <h1 className="text-lg font-normal">Los siguientes términos y condiciones (los "Términos y Condiciones") rigen el uso que usted le dé al sitio web Jireh (el "sitio web") y a cualquiera de los contenidos disponibles por o a través de este Sitio Web, incluyendo cualquier contenido derivado del mismo. Jireh ha puesto a su disposición el Sitio Web. Podemos cambiar los Términos y Condiciones de Uso, sin embargo estos Términos y Condiciones puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios. AL USAR EL SITIO WEB, USTED ACEPTA Y ESTÁ DE ACUERDO CON ESTOS TÉRMINOS Y CONDICIONES EN LO QUE SE REFIERE AL USO DEL SITIO WEB. Si usted no está de acuerdo con estos Términos y Condiciones, no puede tener acceso al mismo ni usar el Sitio Web de ninguna otra manera.</h1>
                 <h1 className="text-lg font-bold">Jireh pone a su disposición la siguiente información:</h1>

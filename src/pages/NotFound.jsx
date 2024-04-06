@@ -1,7 +1,11 @@
+import Error404 from "../components/Error404";
+import Layout from "./user/Layout";
 
 function NotFound() {
   return (
-    <div className="pt-44">404NotFound</div>
+    <Layout>
+      <Error404 />
+    </Layout>
   )
 }
 

@@ -6,8 +6,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import { Link } from "react-router-dom";
-import Button from './Ui/Button';
-import Faq from './Faq';
 
 function Footer() {
     return (
@@ -69,20 +67,6 @@ function Footer() {
                         </div>
                     </div>
                     <h2 className='text-textoNota text-xs mt-2'><span className='font-bold'>¡Nota! </span>Al ingresar y enviar tu correo electrónico se te proporcionará más información acerca de lo que representa JIREH Community para los amantes de los animales.</h2>
-                    <h1 className='mt-4 text-primaryBlue font-bold text-xl'>FAQ (Preguntas Frecuentes)</h1>
-                    <Faq
-                        question="¿Cómo puedo agendar una cita?"
-                        reply="Respuesta..."
-                    />
-                    <Faq
-                        question="¿Cuáles son los servicios que ofrece la veterinaria?"
-                        reply="Respuesta..."
-                    />
-                    <Faq
-                        question="¿Ofrecen servicios de urgencias y cómo puedo contactarlos?"
-                        reply="Respuesta..."
-                    />
-                    <Button texto="Ver más" bg="primaryBlue" textoColor="secundaryBlue" />
                 </div>
             </div>
             {/* Navbar section 2 */}

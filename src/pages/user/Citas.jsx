@@ -1,11 +1,11 @@
 import FormCita from "../../components/Form/FormCita";
 import Header from "../../components/Header/Header";
-import Layout from "./Layout"
+import Layout from "./Layout";
 
 function Citas() {
     return (
         <Layout>
-            <Header texto="AGENDA UNA CITA" />
+            <Header texto="AGENDA UNA CITA" linkText="Cita" />
             <section className="md:mx-40 mx-10 mb-10">
                 <div className="grid md:grid-cols-2 md:space-x-10">
                     <div>

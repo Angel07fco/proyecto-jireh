@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 export const useForm = (initialForm, validateForm, caso) => {
-    const { signup, singin, verifyE, sendPasswordReset, sendCodePass, response, errors: signinErrors } = useAuth();
+    const { signup, singin, verifyE, sendForgotMethod, sendValidateReply, sendValidateCode, sendPasswordReset, response, errors: signinErrors } = useAuth();
     const [responseSuccess, setResponseSuccess] = useState("");
     const [responseErrors, setResponseError] = useState("");
     const [form, setForm] = useState(initialForm);
@@ -31,15 +31,21 @@ export const useForm = (initialForm, validateForm, caso) => {
         if (Object.keys(errors).length === 0) {
             setLoading(true);
             if (caso === 1) {
-                signup(form);
+                signup(form);  // Formulario.jsx
             } else if (caso === 2) {
-                singin(form);
+                singin(form); // FormLogin.jsx
             } else if (caso === 3) {
-                verifyE(form);
+                verifyE(form); // FormConfirmAccount.jsx
             } else if (caso === 4) {
-                sendPasswordReset(form);
+                sendForgotMethod(form); // FormQuestion.jsx
             } else if (caso === 5) {
-                sendCodePass(form);
+                sendForgotMethod(form); // FormSendOtp.jsx
+            } else if (caso === 6) {
+                sendValidateReply(form); // FormQuestionSecret.jsx
+            } else if (caso === 7) {
+                sendValidateCode(form); // FormUnlockAccount.jsx
+            } else if (caso === 8) {
+                sendPasswordReset(form);
             }
         } else {
             return;
@@ -69,14 +75,27 @@ export const useForm = (initialForm, validateForm, caso) => {
                 if (caso === 1) {
                     navigate('/confirmar-cuenta', { state: { email: form.email } });
                 }
+                if (caso === 2) {
+                    navigate('/');
+                }
                 if (caso === 3) {
                     navigate('/iniciar-sesion');
                 }
-                if (caso === 4) {
-                    navigate('/iniciar-sesion');
+                if (caso === 4 && initialForm.indicator === "2") {
+                    navigate('/pregunta-secreta', { state: { email: form.email } });
                 }
-                if (caso === 5) {
-                    navigate('/desbloquear-cuenta', { state: { email: form.email } });
+                if (caso === 5 && initialForm.indicator === "1") {
+                    navigate('/confirmar-codigo', { state: { email: form.email } });
+                }
+                if (caso === 6) {
+                    navigate('/cambiar-contrasena', { state: { email: form.email } });
+                }
+                if (caso === 7) {
+                    navigate('/iniciar-sesion');
+                    navigate('/cambiar-contrasena', { state: { email: form.email } });
+                }
+                if (caso === 8) {
+                    navigate('/iniciar-sesion');
                 }
             }, 5000);
             return () => clearTimeout(timeout);

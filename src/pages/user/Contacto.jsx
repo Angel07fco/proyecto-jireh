@@ -10,7 +10,7 @@ import FormContact from '../../components/Form/FormContact';
 function Contacto() {
     return (
         <Layout>
-            <Header texto="EMERGENCIAS LAS 24 HORAS" />
+            <Header texto="EMERGENCIAS LAS 24 HORAS" linkText="Contacto" />
             <section className="md:mx-40 mx-10">
                 <h1 className="text-3xl font-bold mt-16 text-secondaryBlue">¡Queremos conocer tu opinión!</h1>
                 <p className="text-xl mt-5">Nuestra misión es brindarte una atención de calidad a ti y a tus mascotas, fomentando su salud y bienestar. Es por ello que deseamos saber cual es tu experiencia con la clinica. Comparte tu opinión, comentarios, quejas y sugerencias en los siguientes contactos.</p>

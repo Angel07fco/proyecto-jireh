@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 import './App.css'
 
 import Home from './pages/user/Home';
@@ -19,35 +19,68 @@ import ConfirmAccount from "./pages/ConfirmAccount";
 import UnlockAccount from "./pages/UnlockAccount";
 import AvisoPrivacidad from "./pages/AvisoPrivacidad";
 import PoliticaCookies from "./pages/PoliticaCookies";
+import MethodPassword from "./pages/MethodPassword";
+import PasswordQuestion from "./pages/PasswordQuestion";
+import UnlockQuestionSecret from "./pages/UnlockQuestionSecret";
+import PreguntasFrecuentes from "./pages/PreguntasFrecuentes";
+import Perfil from "./pages/user/perfil/Perfil";
+import Mascotas from "./pages/user/perfil/Mascotas";
+import HistorialMedico from "./pages/user/perfil/HistorialMedico";
+import HistorialCitas from "./pages/user/perfil/HistorialCitas";
+import ProductosComprados from "./pages/user/perfil/ProductosComprados";
+import Cuenta from "./pages/user/perfil/Cuenta"; // Cambiado a la ruta correcta
+import { ProtectedRoute } from "./components/Protected/ProtectedRoute";
+import CambiarPassword from "./pages/CambiarPassword";
+import Admin from "./pages/admin/Admin";
+import ImageCloudinary from "./utils/ImageCloudinary";
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/citas' element={<Citas />} />
-
       <Route path='/servicios' element={<Servicios />} />
       <Route path='/servicio-seleccionado' element={<ServicioSeleccionado />} />
-
       <Route path='/tienda' element={<Tienda />} />
       <Route path='/producto-seleccionado/:nombre' element={<ProductoSeleccionado />} />
-
       <Route path='/quienes-somos' element={<QuienesSomos />} />
       <Route path='/contacto' element={<Contacto />} />
+
+      <Route element={<ProtectedRoute />} >
+        <Route path='/cuenta' element={<Cuenta />} />
+        <Route path='/perfil' element={<Perfil />} />
+        <Route path='/mascotas' element={<Mascotas />} />
+        <Route path='/historial-medico' element={<HistorialMedico />} />
+        <Route path='/historial-citas' element={<HistorialCitas />} />
+        <Route path='/productos-comprados' element={<ProductosComprados />} />
+      </Route>
 
       <Route path='/iniciar-sesion' element={<Login />} />
       <Route path='/registro' element={<Register />} />
       <Route path='/confirmar-cuenta' element={<ConfirmAccount />} />
+      <Route path='/metodo-recuperar' element={<MethodPassword />} />
       <Route path='/recuperar-contraseña' element={<Password />} />
-      <Route path='/desbloquear-cuenta' element={<UnlockAccount />} />
+      <Route path='/recuperar-contraseña-pregunta' element={<PasswordQuestion />} />
+      <Route path='/confirmar-codigo' element={<UnlockAccount />} />
+      <Route path='/pregunta-secreta' element={<UnlockQuestionSecret />} />
+      <Route path='/cambiar-contrasena' element={<CambiarPassword />} />
 
       <Route path='/aviso&de&privacidad' element={<AvisoPrivacidad />} />
       <Route path='/terminos&condiciones' element={<TerminosCondiciones />} />
       <Route path='/politica&de&cookies' element={<PoliticaCookies />} />
 
+      <Route path='/preguntas&frecuentes' element={<PreguntasFrecuentes />} />
+
       <Route path='*' element={<NotFound />} />
+
+      <Route path='/admin' element={<Admin />} />
+
+
+      {/* Rutas para paginas de prueba
+        <Route path="/image-cloudinary" element={<ImageCloudinary />} />
+      */}
     </Routes>
   )
 }
 
-export default App
+export default App;

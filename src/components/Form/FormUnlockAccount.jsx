@@ -8,14 +8,12 @@ import Button from "../../components/Ui/Button";
 import Loader from "../../components/Ui/Loader";
 import Danger from "../Ui/Alertas/Danger";
 import Success from "../Ui/Alertas/Success";
-import { useState } from "react";
 
-const initialForm = { newPassword: "", otp: "" };
+const initialForm = { otp: "" };
 
 const validationsForm = (form) => {
     let errors = {};
     let regexCode = /^[0-9]{4}$/;
-    let regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#%$])[A-Za-z\d@#%$]{8,20}$/;
 
     if (!form.otp.trim()) {
         errors.otp = "El campo 'Código' es requerido.";
@@ -27,12 +25,6 @@ const validationsForm = (form) => {
         errors.otp = "El campo 'Código' solo permite números.";
     }
 
-    if (!form.newPassword.trim()) {
-        errors.newPassword = "El campo 'Nueva contraseña' es requerido.";
-    } else if (!regexPass.test(form.newPassword.trim())){
-        errors.newPassword = "El campo 'Nueva contraseña' es incorrecto.";
-    }
-
     return errors;
 };
 
@@ -40,20 +32,14 @@ function FormConfirmAccount() {
     const location = useLocation();
     const { email } = location.state;
     const { form, errors, loading, responseErrors, responseSuccess, handleChange, handleBlur, handleSubmit }
-    = useForm({ ...initialForm, email }, validationsForm, 4);
-
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handleClickShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
+    = useForm({ ...initialForm, email }, validationsForm, 7);
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img className="mx-auto h-24 w-auto" src={Logo} alt="Logo JIREH" />
                 <h2 className="mt-5 text-2xl font-bold leading-9 tracking-tight text-gray-900">¡Recuperación de contraseña!</h2>
-                <h5>Por favor, verifique su correo electrónico e ingrese el código de activación y una nueva contraseña.</h5>
+                <h5>Por favor, verifique su correo electrónico e ingrese el código que hemos enviado a su correo.</h5>
             </div>
 
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -85,28 +71,6 @@ function FormConfirmAccount() {
                                 required
                             />
                             {errors.otp && <p className="text-red-500 text-xs font-bold">{errors.otp}</p>}
-                        </div>
-                    </div>
-
-                    <div className='mt-3'>
-                        <div className="flex flex-row justify-between items-center">
-                            <Label>Nueva contraseña</Label>
-                            <p
-                                className="cursor-pointer text-sm font-medium text-secondaryBlue"
-                                onClick={handleClickShowPassword}
-                            >{showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}</p>
-                        </div>
-                        <div className="mt-2">
-                            <Input
-                                type={showPassword ? 'text' : 'password'}
-                                name="newPassword"
-                                placeholder="Escribe tu contraseña"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                value={form.newPassword}
-                                required
-                            />
-                            {errors.newPassword && <p className="text-red-500 text-xs font-bold">{errors.newPassword}</p>}
                         </div>
                     </div>
 

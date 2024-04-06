@@ -9,7 +9,7 @@ import Seresto from '../assets/images/products/Seresto.jpeg';
 import Veraflox from '../assets/images/products/Veraflox.jpg';
 import Vetridem from '../assets/images/products/vetridem.jpg';
 
-export const productos  = [
+export const productos = [
     {
         id: 1,
         nombre: 'Advantix',
@@ -18,6 +18,8 @@ export const productos  = [
         disponibles: 10,
         imagen: [Advantix, Bolf, Drontal, Essec, Neutrolor],
         mascota: 'perro',
+        edad: 'Cachorro',
+        tamanio: 'Mediano',
     },
     {
         id: 2,
@@ -27,6 +29,8 @@ export const productos  = [
         disponibles: 5,
         imagen: [Bolf, Advantix, Drontal, Essec, Neutrolor],
         mascota: 'gato',
+        edad: 'Maduro',
+        tamanio: 'Pequeño',
     },
     {
         id: 3,
@@ -36,6 +40,8 @@ export const productos  = [
         disponibles: 15,
         imagen: [Drontal, Bolf, Advantix, Essec, Neutrolor],
         mascota: 'perro',
+        edad: 'Adulto',
+        tamanio: 'Grande',
     },
     {
         id: 4,
@@ -45,6 +51,8 @@ export const productos  = [
         disponibles: 15,
         imagen: [Essec, Drontal, Bolf, Advantix, Neutrolor],
         mascota: 'perro',
+        edad: 'Maduro',
+        tamanio: 'Mediano',
     },
     {
         id: 5,
@@ -54,7 +62,10 @@ export const productos  = [
         disponibles: 15,
         imagen: [Neutrolor, Essec, Drontal, Bolf, Advantix],
         mascota: 'perro',
-    },{
+        edad: 'Adulto',
+        tamanio: 'Gigante',
+    },
+    {
         id: 6,
         nombre: 'Procox',
         descripcion: 'Descripción del producto 6. Detalles adicionales sobre el producto.',
@@ -62,6 +73,8 @@ export const productos  = [
         disponibles: 15,
         imagen: [Procox, Essec, Drontal, Bolf, Advantix],
         mascota: 'perro',
+        edad: 'Cachorro',
+        tamanio: 'Pequeño',
     },
     {
         id: 7,
@@ -71,6 +84,8 @@ export const productos  = [
         disponibles: 15,
         imagen: [Profender, Essec, Drontal, Bolf, Advantix],
         mascota: 'gato',
+        edad: 'Maduro',
+        tamanio: 'Mediano',
     },
     {
         id: 8,
@@ -80,6 +95,8 @@ export const productos  = [
         disponibles: 15,
         imagen: [Seresto, Essec, Drontal, Bolf, Advantix],
         mascota: 'gato',
+        edad: 'Adulto',
+        tamanio: 'Grande',
     },
     {
         id: 9,
@@ -89,6 +106,8 @@ export const productos  = [
         disponibles: 15,
         imagen: [Veraflox, Essec, Drontal, Bolf, Advantix],
         mascota: 'gato',
+        edad: 'Cachorro',
+        tamanio: 'Pequeño',
     },
     {
         id: 10,
@@ -98,5 +117,7 @@ export const productos  = [
         disponibles: 15,
         imagen: [Vetridem, Essec, Drontal, Bolf, Advantix],
         mascota: 'gato',
+        edad: 'Adulto',
+        tamanio: 'Mediano',
     },
 ];

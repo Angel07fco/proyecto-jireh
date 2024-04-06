@@ -9,7 +9,7 @@ import Success from "../Ui/Alertas/Success";
 import Danger from "../Ui/Alertas/Danger";
 import { Link } from "react-router-dom";
 
-const initialForm = { email: "" };
+const initialForm = { email: "", indicator: "1" };
 
 const validationsForm = (form) => {
     let errors = {};
@@ -25,6 +25,7 @@ const validationsForm = (form) => {
 };
 
 function FormSendOtp() {
+
     const { form, errors, loading, responseErrors, responseSuccess, handleChange, handleBlur, handleSubmit }
     = useForm(initialForm, validationsForm, 5);
 
@@ -33,7 +34,7 @@ function FormSendOtp() {
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img className="mx-auto h-24 w-auto" src={Logo} alt="Logo JIREH" />
                 <h2 className="mt-5 text-2xl font-bold leading-9 tracking-tight text-gray-900">¡Recuperación de contraseña!</h2>
-                <h5>¿Necesitas restablecer tu contraseña? ¡No hay problema! Ingresa tu dirección de correo electrónico y verifica el código que te enviaremos para continuar.</h5>
+                <h5>¿Necesitas restablecer tu contraseña? ¡No hay problema! Ingresa tu dirección de correo electrónico y se enviara un código a su correo electrónico.</h5>
             </div>
 
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -83,4 +84,4 @@ function FormSendOtp() {
     );
 }
 
-export default FormSendOtp
+export default FormSendOtp;

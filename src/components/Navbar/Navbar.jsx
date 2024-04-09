@@ -2,6 +2,7 @@ import Logo from "../../assets/images/jirehM.png";
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useEffect, useState } from "react";
@@ -107,6 +108,11 @@ function Navbar() {
                                     token
                                     ?
                                         <div className="flex justify-center items-center space-x-5">
+                                            <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-primaryBlue hover:text-secondaryBlue bg-secondaryBlue rounded-lg hover:bg-primaryBlue">
+                                                <NotificationsNoneOutlinedIcon fontSize="small" />
+                                                <span className="sr-only">Notifications</span>
+                                                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-secondaryBlue bg-primaryBlue border-2 border-secondaryBlue rounded-full -top-2 -end-2">0</div>
+                                            </button>
                                             <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-primaryBlue hover:text-secondaryBlue bg-secondaryBlue rounded-lg hover:bg-primaryBlue">
                                                 <ShoppingCartIcon fontSize="small" />
                                                 <span className="sr-only">Notifications</span>

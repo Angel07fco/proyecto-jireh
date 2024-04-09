@@ -1,4 +1,4 @@
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import './App.css'
 
 import Home from './pages/user/Home';
@@ -32,7 +32,16 @@ import Cuenta from "./pages/user/perfil/Cuenta"; // Cambiado a la ruta correcta
 import { ProtectedRoute } from "./components/Protected/ProtectedRoute";
 import CambiarPassword from "./pages/CambiarPassword";
 import Admin from "./pages/admin/Admin";
-import ImageCloudinary from "./utils/ImageCloudinary";
+//import ImageCloudinary from "./utils/ImageCloudinary";
+import AdminUsuarios from "./pages/admin/usuarios/AdminUsuarios";
+import AdminProductos from "./pages/admin/productos/AdminProductos";
+//import Calendar from "./utils/Calendar";
+import CrudMascotas from "./utils/crud/mascotas/CrudMascotas";
+import AdminCitas from "./pages/admin/citas/AdminCitas";
+import AdminServicios from "./pages/admin/servicios/AdminServicios";
+import AdminMascotas from "./pages/admin/mascotas/AdminMascotas";
+import EditMascota from "./pages/user/perfil/mascotas/EditMascota";
+import EditCita from "./pages/user/perfil/citas/EditCita";
 
 function App() {
   return (
@@ -50,8 +59,10 @@ function App() {
         <Route path='/cuenta' element={<Cuenta />} />
         <Route path='/perfil' element={<Perfil />} />
         <Route path='/mascotas' element={<Mascotas />} />
+        <Route path='/edit-mascota' element={<EditMascota />} />
         <Route path='/historial-medico' element={<HistorialMedico />} />
         <Route path='/historial-citas' element={<HistorialCitas />} />
+        <Route path='/edit-cita' element={<EditCita />} />
         <Route path='/productos-comprados' element={<ProductosComprados />} />
       </Route>
 
@@ -73,11 +84,22 @@ function App() {
 
       <Route path='*' element={<NotFound />} />
 
-      <Route path='/admin' element={<Admin />} />
 
+
+
+      <Route path='/admin' element={<Admin />} />
+      <Route path='/admin-citas' element={<AdminCitas />} />
+      <Route path='/admin-servicios' element={<AdminServicios />} />
+      <Route path='/admin-productos' element={<AdminProductos />} />
+      <Route path='/admin-usuarios' element={<AdminUsuarios />} />
+      <Route path='/admin-mascotas' element={<AdminMascotas />} />
+
+      {/* Crud Mscotas */}
+      <Route path='/crud-mascotas' element={<CrudMascotas />} />
 
       {/* Rutas para paginas de prueba
         <Route path="/image-cloudinary" element={<ImageCloudinary />} />
+        <Route path="/calendar" element={<Calendar />} />
       */}
     </Routes>
   )

@@ -1,26 +1,110 @@
 import Header from "../../../components/Header/Header";
 import Aside from "../../../components/Aside";
 import Layout from "../Layout";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function HistorialCitas() {
+  const token = localStorage.getItem("token");
+  const [user, setUser] = useState("");
+  const [datos, setDatos] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`https://backend-jireh.onrender.com/api/v1/user/obtenerusuario/${token}`, {
+            headers: {
+                "x-access-token": token
+            },
+        })
+        .then(({ data } ) => setUser(data))
+        .catch((error) => console.log(error))
+    }
+  }, [token])
+
+  useEffect(() => {
+    setLoading(true);
+    if (user) {
+      axios
+        .get(`https://backend-jireh.onrender.com/api/v1/cita/${user._id}`, {
+            headers: {
+                "x-access-token": token
+            },
+        })
+        .then(({ data } ) => setDatos(data))
+        .catch((error) => console.log(error))
+        setLoading(false);
+  }
+  }, [user])
+
+  console.log(datos)
+
   return (
     <Layout>
       <div className="flex">
         <Aside selected={3} />
-        <div className="w-full">
+        <div className="w-full h-[100vh] overflow-y-scroll">
           <Header texto="Historial de citas de mis mascotas" linkText="Citas" />
-          <div>
-            <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md mx-auto">
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">Cita JIREH</h2>
-              <p className="text-sm text-gray-600 mb-4">Fecha: 14/02/20</p>
-              <p className="text-sm text-gray-600 mb-4">Hora: 10:00 am</p>
-              <p className="text-gray-700">La cita se llevara a cabo a la mascota Malu</p>
-            </div>
+          <div className="grid grid-cols-2 gap-10 py-10 px-10">
+            {datos.map(cita => (
+              <CardCita
+                key={cita.id}
+                cita={cita}
+                mascota={cita.mascota.name}
+                servicio={cita.servicio.name}
+                medico={cita.medico.nombre}
+                fecha={cita.fecha}
+                hora={cita.hora}
+                img={cita.mascota.img}
+                icono={cita.servicio.icono}
+                diaAgendado={cita.citaCreated}
+              />
+            ))}
           </div>
         </div>
       </div>
     </Layout>
   )
 }
+
+function CardCita({cita, mascota, servicio, medico, fecha, hora, img, icono, diaAgendado}) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+      navigate("/edit-cita", { state: { cita } });
+  };
+  return (
+    <div className="w-full bg-white h-auto flex p-5 rounded-xl border border-secondaryBlue" onClick={handleClick}>
+      <div className="w-2/6">
+        <h1 className="font-bold text-secondaryBlue text-xl text-center">{mascota}</h1>
+        <img
+          className="w-40 h-40 my-2"
+          src={img}
+        />
+      </div>
+      <div className="w-4/6 ml-5">
+        <div className="flex items-center">
+          <img
+            className="w-8 h-8"
+            src={icono}
+          />
+          <h1 className="ml-2 text-secondaryBlue font-bold text-xl">{servicio}</h1>
+        </div>
+        <h1 className="font-medium mt-2">Lo atiende: MVZ. {medico}</h1>
+        <div className="mt-5">
+          <h1 className="font-medium">Datos de la cita:</h1>
+          <div>
+            <h1 className="font-bold text-secondaryBlue">Fecha: <span className="font-medium">{fecha}</span></h1>
+            <h1 className="font-bold text-secondaryBlue">Hora: <span className="font-medium">{hora}</span></h1>
+          </div>
+          <h1 className="mt-5 font-medium text-sm bg-secondaryBlue text-primaryBlue text-center">Fue agendada el {diaAgendado}</h1>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 
 export default HistorialCitas

@@ -1,10 +1,12 @@
-import AsideAdmin from "./components/AsideAdmin";
+import AdminLayout from "./AdminLayout";
 
 function Admin() {
   return (
-    <div>
-      <AsideAdmin />
-    </div>
+    <AdminLayout>
+      <div>
+        <h1>Home Admin</h1>
+      </div>
+    </AdminLayout>
   );
 }
 

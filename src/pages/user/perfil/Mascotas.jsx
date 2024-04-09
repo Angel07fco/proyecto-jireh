@@ -5,6 +5,9 @@ import FormPet from "../../../components/Form/FormPet";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../../../components/Ui/Loader";
+import { useNavigate } from "react-router-dom";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 
 function Mascotas() {
     const token = localStorage.getItem("token");
@@ -42,7 +45,7 @@ function Mascotas() {
         }
     }, [user])
 
-    console.log(datos)
+    console.log(datos);
 
     return (
         <Layout>
@@ -62,6 +65,7 @@ function Mascotas() {
                                         {datos.map(pet => (
                                             <CardPet
                                                 key={pet.id}
+                                                id={pet}
                                                 img={pet.img}
                                                 name={pet.name}
                                                 category={pet.categoria}
@@ -77,7 +81,7 @@ function Mascotas() {
                                 </div>
                             )}
                         </div>
-                        <div>
+                        <div className="mb-10">
                             <h1 className="bg-secondaryBlue p-5 text-primaryBlue font-bold text-center text-2xl mb-5">Agregar una nueva mascota</h1>
                             <FormPet />
                         </div>
@@ -88,14 +92,52 @@ function Mascotas() {
     )
 }
 
-function CardPet({img, name, category, especie, size, raza, age, peso, genero}) {
+function CardPet({id, img, name, category, especie, size, raza, age, peso, genero}) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/edit-mascota", { state: { id } });
+    };
     return (
-        <div className="w-full bg-white h-auto flex flex-col p-5 rounded-xl">
+        <div className="w-full bg-white h-auto flex flex-col p-5 rounded-xl cursor-pointer" onClick={handleClick}>
             <div className="flex justify-between items-center">
-                <h1>{category}</h1>
-                <h1>{genero}</h1>
+                <h1 className="flex items-center text-secondaryBlue font-medium">
+                    <span className="mr-2 border border-primaryBlue bg-primaryBlue rounded-full flex items-center justify-center p-1">
+                        <HomeOutlinedIcon fontSize="small" className="text-secondaryBlue" />
+                    </span>
+                    {category}
+                </h1>
+                <h1 className="bg-secondaryBlue text-primaryBlue py-1 px-2 rounded-lg font-medium">{especie}</h1>
             </div>
-            <img src={img} />
+            <div className="flex justify-center items-center">
+                <img src={img} className="w-[90%] h-[100%]" />
+            </div>
+            <div className="px-5">
+                <h1 className="text-secondaryBlue font-medium">{name} ({genero})</h1>
+            </div>
+            <div className="flex justify-between items-center px-5">
+                <h1 className="text-gray-500 font-medium">{raza}</h1>
+                <h1 className="text-gray-500 font-medium">{size}</h1>
+            </div>
+            <div className="flex justify-between items-center px-5 mt-2">
+                <h1 className="flex items-center text-secondaryBlue font-medium">
+                    <div className="w-2 h-2 rounded-full bg-primaryBlue mr-2"></div>
+                    {age} años
+                </h1>
+                <h1 className="flex items-center text-secondaryBlue font-medium">
+                    <div className="w-2 h-2 rounded-full bg-primaryBlue mr-2"></div>
+                    {peso} kg.
+                </h1>
+            </div>
+            <div className="px-5 flex justify-between mt-5">
+                <div className="">
+                    <button className="bg-primaryBlue text-secondaryBlue py-1 px-2 rounded-xl">Editar</button>
+                    <button
+                        className="bg-secondaryBlue text-primaryBlue py-1 px-2 ml-2 rounded-xl"
+                    >Desactivar</button>
+                </div>
+                <PetsOutlinedIcon className="text-secondaryBlue" />
+            </div>
         </div>
     )
 }

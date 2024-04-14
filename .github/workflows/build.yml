@@ -22,19 +22,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      
-      #Verificación del Análisis de SonarCloud
-      - name: Check SonarCloud Analysis
-        run: |
-
-          analysis_status=$(curl -s "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh&metric=alert_status&token=${{ secrets.SONAR_TOKEN }}" | jq -r .projectStatus.status)
-          if [[ "$analysis_status" != "OK" ]]; then
-            echo "El analisis de SonarCloud fallo. Deshaciendo cambios."
-            git reset --hard HEAD~1
-            git push origin HEAD --force
-            exit 1
-          else
-            echo "Analisis de SonarCloud. Aprobado"
-          fi
-
-#https://sonarcloud.io/project/quality_gate?id=Angel07fco_proyecto-jireh

@@ -34,5 +34,4 @@ jobs:
             git push origin HEAD --force
             exit 1
           fi
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+

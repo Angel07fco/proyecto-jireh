@@ -26,7 +26,7 @@ jobs:
       - name: Check SonarCloud Analysis
         run: |
           analysis_status=$(curl -s "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh&metric=alert_status&token=${{ secrets.SONAR_TOKEN }}" | jq -r .projectStatus.status)
-          if [[ "$analysis_status" != "OK" ]]; then
+          if [ "$analysis_status" != "OK" ]; then
             echo "SonarCloud analysis failed. Reverting changes."
             git reset --hard HEAD~1
             git push origin HEAD --force

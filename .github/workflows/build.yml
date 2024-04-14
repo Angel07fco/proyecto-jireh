@@ -22,3 +22,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # Verificar el estado del Quality Gate de SonarCloud
+      - name: Check SonarCloud Quality Gate
+        run: |
+          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh&metric=alert_status")
+          status=$(echo "$response" | jq -r '.projectStatus.status')
+          if [ "$status" != "OK" ]; then
+            echo "El Quality Gate de SonarCloud no ha pasado. Deshaciendo los cambios del último commit y forzando el push."
+            git reset --hard HEAD~1
+            git push origin HEAD --force
+            exit 1
+          fi

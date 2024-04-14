@@ -24,15 +24,12 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # Verificar el estado del Quality Gate de SonarCloud
-      - name: Verificar el estado del Quality Gate de SonarCloud
+      - name: Verificar Quality Gate
         run: |
-          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh")
+          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh&metric=alert_status")
           status=$(echo "$response" | jq -r '.projectStatus.status')
           if [ "$status" != "OK" ]; then
-            echo "El Quality Gate de SonarCloud no ha pasado. Deshaciendo los cambios del último commit y forzando el push."
+            echo "El Quality Gate de SonarCloud no ha pasado. Deshaciendo los cambios del último commit."
             git reset --hard HEAD~1
-            git push origin HEAD --force
             exit 1
           fi
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

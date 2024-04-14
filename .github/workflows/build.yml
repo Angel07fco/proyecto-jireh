@@ -24,7 +24,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # Verificar el estado del Quality Gate de SonarCloud
-      - name: Verificar el estado del Quality Gate de SonarCloud
+      - name: Verificar Quality Gate de SonarCloud
         run: |
           response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh&metric=alert_status")
           status=$(echo "$response" | jq -r '.projectStatus.status')

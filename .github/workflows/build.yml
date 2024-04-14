@@ -25,13 +25,12 @@ jobs:
       #Verificación del Análisis de SonarCloud
       - name: Check SonarCloud Analysis
         run: |
-
-          analysis_status=$(curl -s "https://sonarcloud.io/api/qualitygates/project_status?projectKey=Angel07fco_proyecto-jireh${{ secrets.SONAR_PROJECT_KEY }}&branch=${{ github.ref | replace('refs/heads/', '') }}&token=${{ secrets.SONAR_TOKEN }}" | jq -r .projectStatus.status)
+          analysis_status=$(curl -s "https://sonarcloud.io/api/project_badges/measure?project=Angel07fco_proyecto-jireh&metric=alert_status&token=${{ secrets.SONAR_TOKEN }}" | jq -r .projectStatus.status)
           if [[ "$analysis_status" != "OK" ]]; then
-            echo "El analisis de SonarCloud fallo. Deshaciendo cambios."
+            echo "SonarCloud analysis failed. Reverting changes."
             git reset --hard HEAD~1
             git push origin HEAD --force
             exit 1
           else
-            echo "Analisis de SonarCloud. Aprobado"
+            echo "SonarCloud analysis passed."
           fi

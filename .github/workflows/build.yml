@@ -43,6 +43,7 @@ jobs:
             echo "Quality Gate passed."
           fi
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #https://sonarcloud.io/api/qualitygates/project_status?projectKey=Angel07fco_proyecto-jireh
       #Verficación del estado

@@ -40,8 +40,9 @@ jobs:
         run: |
           status="${{ steps.quality_gate.outputs.status }}"
           if [ "$status" = "ERROR" ]; then
-            echo "Quality Gate check failed."
-            git reset --hard HEAD^  
+            echo "Quality Gate check failed. Reverting changes."
+            git fetch --all
+            git reset --hard origin/master  # Resetear al último commit en la rama master
             exit 1
           else
             echo "Quality Gate passed."

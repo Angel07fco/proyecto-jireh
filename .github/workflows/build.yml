@@ -34,6 +34,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Si es necesario, proporciona un token de autenticación
 
+      #https://sonarcloud.io/api/qualitygates/project_status?projectKey=Angel07fco_proyecto-jireh
       #Verficación del estado
       - name: Check Quality Gate Status
         run: |

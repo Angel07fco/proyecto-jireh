@@ -23,16 +23,31 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       
-      # Verificar el estado del Quality Gate de SonarCloud
-      - name: Verificar el estado del Quality Gate de SonarCloud
+      # Verificación del Quality Gate
+      - name: Get Quality Gate Status
+        id: quality_gate
         run: |
-          response=$(curl -s "https://sonarcloud.io/api/qualitygates/project_status?projectKey=Angel07fco_proyecto-jireh")
-          status=$(echo "$response" | jq -r '.projectStatus.status')
-          if [ "$status" != "OK" ]; then
-            echo "El Quality Gate de SonarCloud no ha pasado. Deshaciendo los cambios del último commit y forzando el push."
-            git reset --hard HEAD~1
-            git push origin HEAD --force
-            exit 1
-          fi
+          projectKey="Angel07fco_proyecto-jireh"
+          apiUrl="https://sonarcloud.io/api/qualitygates/project_status?projectKey=${projectKey}"
+          quality_gate_status=$(curl -s "$apiUrl" | jq -r '.projectStatus.status')
+          echo "::set-output name=status::$quality_gate_status"
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Si es necesario, proporciona un token de autenticación
+
+      #Verficación del estado
+      - name: Check Quality Gate Status
+        run: |
+          status="${{ steps.quality_gate.outputs.status }}"
+          if [ "$status" = "ERROR" ]; then
+            echo "Quality Gate check failed."
+            git reset --hard HEAD^  
+            exit 1
+          else
+            echo "Quality Gate passed."
+          fi
+
+      # Subir cambios solo si pasa la prueba del Quality Gate
+      - name: Push changes if Quality Gate passed
+        if: success()
+        run: |
+          git push origin HEAD:master

@@ -45,9 +45,3 @@ jobs:
           else
             echo "Quality Gate passed."
           fi
-
-      # Subir cambios solo si pasa la prueba del Quality Gate
-      - name: Push changes if Quality Gate passed
-        if: success()
-        run: |
-          git push origin HEAD:master

@@ -16,29 +16,20 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
-      # Escaneo de SonarCloud
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      
-      #Verficación del estado y reset
-      - name: Check Quality Gate Status
+      # Verificación del estado y revertir cambios si es necesario
+      - name: Check Quality Gate Status and Revert Changes if Necessary
         id: quality_gate
         run: |
           projectKey="Angel07fco_proyecto-jireh"
           apiUrl="https://sonarcloud.io/api/qualitygates/project_status?projectKey=${projectKey}"
           quality_gate_status=$(curl -s "$apiUrl" | jq -r '.projectStatus.status')
-          echo "::set-output name=status::$quality_gate_status"
+          echo "Quality Gate Status: $quality_gate_status"
           if [ "$quality_gate_status" = "ERROR" ]; then
             echo "Quality Gate check failed. Reverting changes."
             git fetch --all
-            git revert HEAD  
-            git clean -df  
-            git commit -am "Reverted changes due to Quality Gate failure"  
-            git push origin HEAD:master --force 
-            exit 1
+            git reset --hard origin/master
+            git clean -df
+            echo "Changes reverted successfully."
           else
             echo "Quality Gate passed."
           fi

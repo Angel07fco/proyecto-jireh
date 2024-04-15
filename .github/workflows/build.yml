@@ -39,10 +39,14 @@ jobs:
       - name: Check Quality Gate Status
         run: |
           status="${{ steps.quality_gate.outputs.status }}"
-          if [ "$status" == "ERROR" ]; then
+          if [ "$status" = "ERROR" ]; then
+            echo "Quality Gate check failed. Reverting changes."
             echo "Quality Gate check failed. Reverting changes."
             git fetch --all
-            git reset --hard origin/master  
+            git revert HEAD  
+            git clean -df  
+            git commit -am "Reverted changes due to Quality Gate failure"  
+            git push origin HEAD:master --force 
             exit 1
           else
             echo "Quality Gate passed."

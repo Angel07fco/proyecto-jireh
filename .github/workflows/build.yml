@@ -15,25 +15,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      
-      # Verificación del estado y revertir cambios si es necesario
-      - name: Check Quality Gate Status and Revert Changes if Necessary
-        id: quality_gate
-        run: |
-          projectKey="Angel07fco_proyecto-jireh"
-          apiUrl="https://sonarcloud.io/api/qualitygates/project_status?projectKey=${projectKey}"
-          quality_gate_status=$(curl -s "$apiUrl" | jq -r '.projectStatus.status')
-          echo "Quality Gate Status: $quality_gate_status"
-          if [ "$quality_gate_status" = "ERROR" ]; then
-            echo "Quality Gate check failed. Reverting changes."
-            git fetch --all
-            git reset --hard origin/master
-            git clean -df
-            echo "Changes reverted successfully."
-          else
-            echo "Quality Gate passed."
-          fi
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #https://sonarcloud.io/api/qualitygates/project_status?projectKey=Angel07fco_proyecto-jireh
-      #Verficación del estado
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}     #https://sonarcloud.io/api/qualitygates/project_status?projectKey=Angel07fco_proyecto-jireh
+                                                      #Verficación del estado

@@ -2,9 +2,10 @@ import HeaderAdmin from "../components/HeaderAdmin/HeaderAdmin";
 import AdminLayout from "../AdminLayout";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import CrudFromCita from "./CrudFromCita";
 import CrudTableCita from "./CrudTableCita";
 import Loader from "../../../components/Ui/Loader";
+import Button from "../../../components/Ui/Button";
+import CalendarCitas from "./CalendarCitas";
 
 function AdminCitas() {
 
@@ -46,17 +47,8 @@ function AdminCitas() {
         <AdminLayout>
             <HeaderAdmin texto="CITAS ADMIN" linkText="citas administrador" />
             <div className="px-10">
-                <CrudFromCita
-                    createData={createData}
-                    updateData={updateData}
-                    dataToEdit={dataToEdit}
-                    setDataToEdit={setDataToEdit}
-                />
-                <CrudTableCita
-                    data={db}
-                    setDataToEdit={setDataToEdit}
-                    deleteData={deleteData}
-                />
+                <Button texto="Agendar una nueva cita" />
+                <CalendarCitas />
             </div>
             {loading === true ? <Loader /> :  null}
         </AdminLayout>

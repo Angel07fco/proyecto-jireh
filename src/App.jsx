@@ -42,6 +42,7 @@ import AdminServicios from "./pages/admin/servicios/AdminServicios";
 import AdminMascotas from "./pages/admin/mascotas/AdminMascotas";
 import EditMascota from "./pages/user/perfil/mascotas/EditMascota";
 import EditCita from "./pages/user/perfil/citas/EditCita";
+import Matematicas from "./pages/user/perfil/mascotas/Matematicas";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <Route path='/historial-medico' element={<HistorialMedico />} />
         <Route path='/historial-citas' element={<HistorialCitas />} />
         <Route path='/edit-cita' element={<EditCita />} />
+        <Route path='/calculo-alimento' element={<Matematicas />} />
         <Route path='/productos-comprados' element={<ProductosComprados />} />
       </Route>
 

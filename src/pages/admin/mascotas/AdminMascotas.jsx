@@ -46,12 +46,6 @@ function AdminMascotas() {
         <AdminLayout>
             <HeaderAdmin texto="MASCOTAS ADMIN" linkText="mascotas administrador" />
             <div className="px-10">
-                <CrudFormPet
-                    createData={createData}
-                    updateData={updateData}
-                    dataToEdit={dataToEdit}
-                    setDataToEdit={setDataToEdit}
-                />
                 <CrudTablePet
                     data={db}
                     setDataToEdit={setDataToEdit}

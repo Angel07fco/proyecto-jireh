@@ -46,12 +46,6 @@ function AdminServicios() {
         <AdminLayout>
             <HeaderAdmin texto="SERVICIOS ADMIN" linkText="servicios administrador" />
             <div className="px-10">
-                <CrudFormServ
-                    createData={createData}
-                    updateData={updateData}
-                    dataToEdit={dataToEdit}
-                    setDataToEdit={setDataToEdit}
-                />
                 <CrudTableServ
                     data={db}
                     setDataToEdit={setDataToEdit}

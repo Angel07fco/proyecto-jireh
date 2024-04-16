@@ -24,12 +24,6 @@ function AdminProductos() {
         <AdminLayout>
             <HeaderAdmin texto="PRODUCTOS ADMIN" linkText="productos administrador" />
             <div className="px-10">
-                <CrudFormProduct
-                    createData={createData}
-                    updateData={updateData}
-                    dataToEdit={dataToEdit}
-                    setDataToEdit={setDataToEdit}
-                />
                 <CrudTableProduct
                     data={db}
                     setDataToEdit={setDataToEdit}

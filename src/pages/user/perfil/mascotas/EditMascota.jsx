@@ -5,12 +5,22 @@ import { useState } from "react";
 import { Input } from "../../../../components/Ui/Input";
 import Label from "../../../../components/Ui/Label";
 import EditIcon from '@mui/icons-material/Edit';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { arraypets } from "../../../../helpers/ArrayPets";
 
 function EditMascota() {
     const { state } = useLocation();
     const { id } = state;
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
-    console.log("ID de la mascota:", id);
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const selectedCategoria = watch("categoria", "");
+    const selectedEspecie = watch("especie", "");
+
+    const [loading, setLoading] = useState(false);
 
     // Imagen
     const [renderImg, setRenderImg] = useState(false);
@@ -29,6 +39,29 @@ function EditMascota() {
 
     // Altura
     const [renderAltura, setRenderAltura] = useState(false);
+
+    const hanSubmit = async (event) => {
+        setLoading(true);
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+        try {
+            const response = await axios.put(`https://backend-jireh.onrender.com/api/v1/pet/actualizar/${id._id}`, data, {
+                headers: {
+                    "x-access-token": token // Asegúrate de que token esté definido
+                },
+            });
+            setLoading(false);
+            console.log("Formulario enviado:", response);
+            navigate("/mascotas");
+        } catch (error) {
+            console.error("Error al enviar el formulario:", error);
+        }
+        setLoading(false);
+    }
 
     return (
         <Layout>
@@ -85,7 +118,7 @@ function EditMascota() {
                                         {renderName
                                             ?
                                                 <>
-                                                    <form>
+                                                    <form onSubmit={hanSubmit}>
                                                         <Input
                                                             type="text"
                                                             placeholder={id.name}
@@ -122,7 +155,7 @@ function EditMascota() {
                                         {renderEdad
                                             ?
                                                 <>
-                                                    <form>
+                                                    <form onSubmit={hanSubmit}>
                                                         <Input
                                                             type="text"
                                                             placeholder={`${id.age} años`}
@@ -162,10 +195,104 @@ function EditMascota() {
                                         <div className="w-full">
                                             {renderDetalles
                                                 ?
-                                                    <form>
-                                                        <select>
-                                                            <option></option>
-                                                        </select>
+                                                    <form onSubmit={hanSubmit} className="flex flex-col">
+                                                        <div className="flex space-x-5">
+                                                            <div className="w-full">
+                                                                <Label>Categoria</Label>
+                                                                <select
+                                                                    className={`block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1
+                                                                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                    focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3 ${errors.categoria ? "border-red-500" : ""}`}
+                                                                    {...register("categoria", { required: "Seleccione una categoría" })}
+                                                                >
+                                                                    <option value="">Selecciona una categoría</option>
+                                                                    {arraypets.map((item, index) => (
+                                                                        <option key={index} value={item.categoria}>
+                                                                            {item.categoria}
+                                                                        </option>
+                                                                    ))}
+                                                                </select>
+                                                                {errors.categoria && <p className="text-red-500 text-xs font-bold">{errors.categoria.message}</p>}
+                                                            </div>
+                                                            <div className="w-full">
+                                                                <Label>Especie</Label>
+                                                                <select
+                                                                    className={`block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1
+                                                                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                    focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3 ${errors.especie ? "border-red-500" : ""}`}
+                                                                    {...register("especie", { required: "Seleccione una especie" })}
+                                                                    disabled={!selectedCategoria}
+                                                                >
+                                                                    <option value="">Selecciona una especie</option>
+                                                                    {selectedCategoria &&
+                                                                        arraypets
+                                                                            .find(item => item.categoria === selectedCategoria)
+                                                                            ?.especies.map((item, index) => (
+                                                                                <option key={index} value={item.name}>
+                                                                                    {item.name}
+                                                                                </option>
+                                                                            ))}
+                                                                </select>
+                                                                {errors.especie && <p className="text-red-500 text-xs font-bold">{errors.especie.message}</p>}
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex space-x-5 mt-5">
+                                                            <div className="w-full">
+                                                                <Label>Tamaño</Label>
+                                                                <select
+                                                                    className="mt-2 block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1
+                                                                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                    focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                                                    id="tamano"
+                                                                    {...register("tamano", { required: "Seleccione un Tamaño" })}
+                                                                >
+                                                                    <option value="">Selecciona un Tamaño</option>
+                                                                    <option value="Pequeño">Pequeño</option>
+                                                                    <option value="Mediano">Mediano</option>
+                                                                    <option value="Grande">Grande</option>
+                                                                    <option value="Gigante">Gigante</option>
+                                                                </select>
+                                                                {errors.tamano && <p className="text-red-500 text-xs font-bold">{errors.tamano.message}</p>}
+                                                            </div>
+                                                            <div className='w-full'>
+                                                                <Label>Género</Label>
+                                                                <select
+                                                                    className="mt-2 block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1
+                                                                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                    focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                                                    id="genero"
+                                                                    {...register("genero", { required: "Seleccione un Género" })}
+                                                                >
+                                                                    <option value="">Selecciona un Género</option>
+                                                                    <option value="Macho">Macho</option>
+                                                                    <option value="Hembra">Hembra</option>
+                                                                </select>
+                                                                {errors.genero && <p className="text-red-500 text-xs font-bold">{errors.genero.message}</p>}
+                                                            </div>
+                                                        </div>
+                                                        <div className='w-full mt-5'>
+                                                            <Label>Raza</Label>
+                                                            <div className="mt-2">
+                                                                <input
+                                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1
+                                                                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                    focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                                                    type="text"
+                                                                    name="raza"
+                                                                    {...register("raza", { required: "Raza es obligatorio" })}
+                                                                />
+                                                                {errors.raza && <p className="text-red-500 text-xs font-bold">{errors.raza.message}</p>}
+                                                            </div>
+                                                        </div>
+                                                        <button
+                                                            className="w-full mt-2 rounded-2xl border-2 border-secondaryBlue bg-white px-6 py-3
+                                                            font-semibold uppercase text-secondaryBlue transition-all duration-300
+                                                            hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md
+                                                            hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px]
+                                                            active:rounded-2xl active:shadow-none"
+                                                        >
+                                                            Guardar
+                                                        </button>
                                                     </form>
                                                 :
                                                     <div>
@@ -232,7 +359,7 @@ function EditMascota() {
                                             {renderPeso
                                                 ?
                                                     <>
-                                                        <form>
+                                                        <form onSubmit={hanSubmit}>
                                                             <Input
                                                                 type="text"
                                                                 placeholder={id.peso}
@@ -269,7 +396,7 @@ function EditMascota() {
                                             {renderAltura
                                                 ?
                                                     <>
-                                                        <form>
+                                                        <form onSubmit={hanSubmit}>
                                                             <Input
                                                                 type="text"
                                                                 placeholder={`0.70 mts`}
@@ -301,11 +428,11 @@ function EditMascota() {
                     <div className="mx-10 my-20">
                         <h1 className="bg-secondaryBlue text-primaryBlue p-3 text-3xl text-center mt-5">Seguimiento del alimento de mi mascota</h1>
                         <div className="mx-10">
-                            <h1 className="mt-5 text-secondaryBlue text-lg"><span className="font-medium">Datos actualizados: </span>09-04-2024</h1>
+                            <h1 className="mt-5 text-secondaryBlue text-lg"><span className="font-medium">Datos actualizados: </span>05-04-2024</h1>
                             <div className="mt-5 flex space-x-10">
                                 <h1 className="text-secondaryBlue text-lg font-medium">Peso: <span className="bg-secondaryBlue text-primaryBlue p-1 rounded-md">14 kg</span></h1>
-                                <h1 className="text-secondaryBlue text-lg font-medium">Altura: <span className="bg-primaryBlue text-secondaryBlue p-1 rounded-md">14 kg</span></h1>
-                                <h1 className="text-secondaryBlue text-lg font-medium">IMC: <span className="bg-secondaryBlue text-primaryBlue p-1 rounded-md">24.48</span></h1>
+                                <h1 className="text-secondaryBlue text-lg font-medium">Altura: <span className="bg-primaryBlue text-secondaryBlue p-1 rounded-md">0.72 m</span></h1>
+                                <h1 className="text-secondaryBlue text-lg font-medium">IMC: <span className="bg-secondaryBlue text-primaryBlue p-1 rounded-md">27.00</span></h1>
                             </div>
 
                             <div className="flex w-full">
@@ -313,21 +440,20 @@ function EditMascota() {
                                     <h1 className="mt-8 text-secondaryBlue text-lg font-medium">Recomendado:</h1>
                                     <div className="w-[60%] mt-12 ml-[10%] flex flex-col justify-center items-center bg-secondaryBlue pb-2 rounded-lg">
                                         <img className="w-[80%] -mt-12" src="https://res.cloudinary.com/dl8odylct/image/upload/v1712689124/jireh/platocomida_rpgllt.png" />
-                                        <h1 className="text-primaryBlue font-medium">0.480 kg.</h1>
+                                        <h1 className="text-primaryBlue font-medium">0.350 kg.</h1>
                                         <h1 className="text-primaryBlue font-medium">Por dia</h1>
                                     </div>
                                 </div>
                                 <div className="w-4/6">
                                     <h1 className="mt-8 text-secondaryBlue text-lg font-medium">Criterio:</h1>
                                     <div>
-                                        
                                     </div>
                                 </div>
                             </div>
 
                             <div className="flex mt-8 items-center">
                                 <h1 className="text-secondaryBlue text-lg font-medium">Calcular el aumento de alimento de mi mascota:</h1>
-                                <Link className="underline text-secondaryBlue ml-3">Ir</Link>
+                                <Link to="/calculo-alimento" className="underline text-secondaryBlue ml-3">Ir</Link>
                             </div>
                         </div>
                     </div>

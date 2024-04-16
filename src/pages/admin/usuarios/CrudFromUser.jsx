@@ -6,7 +6,6 @@ const initialForm = {
     email: "",
     phone: "",
     password: "",
-    id: null
 }
 
 
@@ -31,16 +30,13 @@ function CrudFromUser({createData, updateData, dataToEdit, setDataToEdit}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!form.name || !form.constellation){
+        if (!form.usuario || !form.email || !form.phone || !form.password){
             alert("Datos incompletos");
             return;
         }
 
-        if (form.id === null){
-            createData(form);
-        } else {
-            updateData(form);
-        }
+        createData(form);
+
 
         handleReset();
     };

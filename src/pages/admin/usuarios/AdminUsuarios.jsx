@@ -8,7 +8,9 @@ import HeaderAdmin from "../components/HeaderAdmin/HeaderAdmin";
 
 function AdminUsuarios() {
     const [loading, setLoading] = useState(false);
-    const token = localStorage.getItem("token");
+    const [responseErrors, setResponseErrors] = useState(false);
+    const [responseSuccess, setResponseSuccess] = useState(false);
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYzMjM5ZjQ2ZTk1YzhiMTk1ZGE4MTEiLCJlbWFpbCI6ImFuZ2VsMDJmY29AZ21haWwuY29tIiwiaWF0IjoxNzEzMDQyODQyLCJleHAiOjE3MTU2MzQ4NDJ9.lUP_ESxb0wCKoAgefrnKhAWXWZqvKVY1eIrmb-LK36Y"
     const [db, setDb] = useState([]);
 
     useEffect(() => {
@@ -26,13 +28,25 @@ function AdminUsuarios() {
         setLoading(false);
     }, [db])
 
-    console.log(db)
+    console.log(db);
 
     const [dataToEdit, setDataToEdit] = useState(null);
 
-    const createData = (data) => {
-        data.id = Date.now();
-        setDb([...db, data]);
+    const createData = async (data) => {
+        console.log(data);
+        setLoading(true);
+        try {
+            const response = await axios.post("https://backend-jireh.onrender.com/api/v1/user/crearcuenta", data);
+            console.log(response.data)
+            setResponseSuccess(response.data.msj);
+        } catch (error) {
+            if (error.response) {
+                setResponseErrors(error.response.data);
+            } else {
+                setResponseErrors("Error al conectar con el servidor");
+            }
+        }
+        setLoading(false);
     };
 
     const updateData = (data) => {
@@ -46,12 +60,6 @@ function AdminUsuarios() {
         <AdminLayout>
             <HeaderAdmin texto="USUARIOS ADMIN" linkText="usuarios administrador" />
             <div className="px-10">
-                <CrudFromUser
-                    createData={createData}
-                    updateData={updateData}
-                    dataToEdit={dataToEdit}
-                    setDataToEdit={setDataToEdit}
-                />
                 <CrudTableUser
                     data={db}
                     setDataToEdit={setDataToEdit}

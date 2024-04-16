@@ -4,6 +4,7 @@ import Layout from "../Layout";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import EventBusyIcon from '@mui/icons-material/EventBusy';
 
 function HistorialCitas() {
   const token = localStorage.getItem("token");
@@ -48,20 +49,28 @@ function HistorialCitas() {
         <div className="w-full h-[100vh] overflow-y-scroll">
           <Header texto="Historial de citas de mis mascotas" linkText="Citas" />
           <div className="grid grid-cols-2 gap-10 py-10 px-10">
-            {datos.map(cita => (
-              <CardCita
-                key={cita.id}
-                cita={cita}
-                mascota={cita.mascota.name}
-                servicio={cita.servicio.name}
-                medico={cita.medico.nombre}
-                fecha={cita.fecha}
-                hora={cita.hora}
-                img={cita.mascota.img}
-                icono={cita.servicio.icono}
-                diaAgendado={cita.citaCreated}
-              />
-            ))}
+            {datos.length === 0 ? (
+                <div className="flex flex-col justify-center items-center">
+                  <EventBusyIcon sx={{ fontSize: 60 }} className="text-secondaryBlue" />
+                  <h1 className="font-bold text-secondaryBlue text-lg mt-3">No tienes ninguna cita agendada en este momento.</h1>
+                </div>
+              ) : (
+                datos.map(cita => (
+                  <CardCita
+                    key={cita.id}
+                    cita={cita}
+                    mascota={cita.mascota.name}
+                    servicio={cita.servicio.name}
+                    medico={cita.medico.nombre}
+                    fecha={cita.fecha}
+                    hora={cita.hora}
+                    img={cita.mascota.img}
+                    icono={cita.servicio.icono}
+                    diaAgendado={cita.citaCreated}
+                  />
+                ))
+              )
+            }
           </div>
         </div>
       </div>

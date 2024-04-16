@@ -173,7 +173,7 @@ function CardForm2({ onNext, onBack, veterinario, onSelectFecha, onSelectHora })
                         },
                     })
                 setHorarios(response.data);
-                console.log(response.data)// Ajustar la respuesta para obtener solo los datos
+                console.log(response.data)
             } catch (error) {
                 console.log(error);
             }

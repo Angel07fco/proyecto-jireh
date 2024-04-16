@@ -27,7 +27,6 @@ function AdminCitas() {
         }
         setLoading(false);
     }, [db])
-    console.log(db)
 
     const [dataToEdit, setDataToEdit] = useState(null);
 

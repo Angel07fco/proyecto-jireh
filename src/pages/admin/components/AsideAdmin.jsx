@@ -26,7 +26,7 @@ function AsideAdmin() {
     ]
 
     const Menu2 = [
-        { title: "Mi Cuenta", path: "/admin", icon: PersonIcon },
+        { title: "Mi Cuenta", path: "/admin-cuenta", icon: PersonIcon },
         { title: "Reportes", path: "/admin", icon: AssessmentIcon },
         { title: "Salir", path: "/admin", icon: LogoutIcon },
     ]
@@ -91,9 +91,11 @@ function AsideAdmin() {
                                 <span className="hidden group-hover:inline ml-2">{menu.title}</span>
                             )}
                         </span>
-                        <span className={`text-base font-medium flex-1 duration-200 pt-1 ${!open && "hidden"}`}>
+                        <Link
+                            to={menu.path}
+                            className={`text-base font-medium flex-1 duration-200 pt-1 ${!open && "hidden"}`}>
                             {menu.title}
-                        </span>
+                        </Link>
                     </li>
                 ))}
                 </ul>

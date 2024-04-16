@@ -43,6 +43,8 @@ import AdminMascotas from "./pages/admin/mascotas/AdminMascotas";
 import EditMascota from "./pages/user/perfil/mascotas/EditMascota";
 import EditCita from "./pages/user/perfil/citas/EditCita";
 import Matematicas from "./pages/user/perfil/mascotas/Matematicas";
+import CitasDetalle from "./pages/admin/citas/CitasDetalle";
+import AdminCuenta from "./pages/admin/cuenta/AdminCuenta";
 
 function App() {
   return (
@@ -91,10 +93,12 @@ function App() {
 
       <Route path='/admin' element={<Admin />} />
       <Route path='/admin-citas' element={<AdminCitas />} />
+      <Route path='/cita-detalles' element={<CitasDetalle />} />
       <Route path='/admin-servicios' element={<AdminServicios />} />
       <Route path='/admin-productos' element={<AdminProductos />} />
       <Route path='/admin-usuarios' element={<AdminUsuarios />} />
       <Route path='/admin-mascotas' element={<AdminMascotas />} />
+      <Route path='/admin-cuenta' element={<AdminCuenta />} />
 
       {/* Crud Mscotas */}
       <Route path='/crud-mascotas' element={<CrudMascotas />} />

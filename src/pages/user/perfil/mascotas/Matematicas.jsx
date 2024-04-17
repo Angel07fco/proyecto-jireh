@@ -176,7 +176,7 @@ function Matematicas() {
                             </div>
                             <div className="w-4/6">
                                 <div className="w-full bg-primaryBlue p-5 mt-10">
-                                <h1 className="bg-secondaryBlue text-primaryBlue p-2 my-2">- Seleccione una fecha inicial</h1>
+                                <h1 className="bg-secondaryBlue text-primaryBlue p-2 my-2">- Selecciona una cita para la fecha inicial</h1>
                                 <div className="">
                                     {fechaInicialSeleccionada === null
                                         ?
@@ -238,7 +238,7 @@ function Matematicas() {
 
                                 {fechaInicialSeleccionada && (
                                     <>
-                                        <h1 className="bg-secondaryBlue text-primaryBlue p-2 mt-8 mb-2">- Seleccione una fecha final</h1>
+                                        <h1 className="bg-secondaryBlue text-primaryBlue p-2 mt-8 mb-2">- Selecciona una cita para la fecha final</h1>
                                         {fechaFinalSeleccionada === null
                                             ?
                                             <div className="">
@@ -302,7 +302,7 @@ function Matematicas() {
 
                                 {fechaFinalSeleccionada && (
                                     <>
-                                        <h1 className="bg-secondaryBlue text-primaryBlue p-2 mt-8 mb-2">- Seleccione para predecir hasta 12 meses adelante de la fecha final</h1>
+                                        <h1 className="bg-secondaryBlue text-primaryBlue p-2 mt-8 mb-2">- Seleccione la cantidad de meses a predecir después de la fecha final</h1>
                                         <div className="">
                                             <select
                                                 className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1

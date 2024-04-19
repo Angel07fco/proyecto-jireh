@@ -1,20 +1,24 @@
-name: Build
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types: [opened, synchronize, reopened]
-jobs:
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+name: Build  # Nombre de la acción, en este caso, "Build"
+
+on:  # Eventos que desencadenan la acción
+  push:  # Cuando se realiza un push a la rama
+    branches:  # Se especifica la(s) rama(s)
+      - master  # Se ejecuta solo cuando se realiza un push a la rama "master"
+  pull_request:  # Cuando se abre, sincroniza o reabre un pull request
+    types: [opened, synchronize, reopened]  # Tipos de eventos de pull request que activan la acción
+
+jobs:  # Define los trabajos que se ejecutarán
+  sonarcloud:  # Nombre del trabajo, en este caso, "SonarCloud"
+    name: SonarCloud  # Nombre del trabajo que se muestra en el panel de GitHub Actions
+    runs-on: ubuntu-latest  # Entorno en el que se ejecutará el trabajo, en este caso, Ubuntu
+
+    steps:  # Define los pasos a seguir dentro del trabajo
+      - uses: actions/checkout@v3  # Paso para clonar el repositorio en el entorno de ejecución
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          fetch-depth: 0  # Se deshabilita la clonación superficial para una mejor relevancia del análisis
+
+      - name: SonarCloud Scan  # Nombre del paso, en este caso, "SonarCloud Scan"
+        uses: SonarSource/sonarcloud-github-action@master  # Utiliza la acción proporcionada por SonarCloud para ejecutar el análisis
+        env:  # Variables de entorno necesarias para la acción
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token de GitHub necesario para obtener información del pull request, si lo hay
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de SonarCloud necesario para autenticar y enviar resultados del análisis

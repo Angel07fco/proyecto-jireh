@@ -161,29 +161,37 @@ function CardForm2({ onNext, onBack, veterinario, onSelectFecha, onSelectHora })
     };
 
     const [horarios, setHorarios] = useState(null);
+    const [horariosDisponibles, setHorariosDisponibles] = useState([]);
     const obtenerHorarios = async () => {
         setLoading(true);
         if (startDate !== ""){
             const formattedDate = format(startDate, 'dd-MM-yyyy');
             try {
-                const response = await axios
-                .get(`https://backend-jireh.onrender.com/api/v1/cita/citas/${veterinario}/${formattedDate}`, {
-                        headers: {
-                            "x-access-token": token
-                        },
-                    })
+                const response = await
+                    axios .get(`https://backend-jireh.onrender.com/api/v1/cita/citas/${veterinario}/${formattedDate}`, {
+                                headers: {
+                                    "x-access-token": token
+                                },
+                            })
                 setHorarios(response.data);
-                console.log(response.data)
+
+                const response2 = await
+                axios .get(`https://backend-jireh.onrender.com/api/v1/horario/${veterinario}/${formattedDate}`)
+                setHorariosDisponibles(response2.data.horariosDisponibles);
+
+                console.log("Citas:", response.data);
+                console.log("Horarios disponibles:", response2.data.horariosDisponibles);
+                if(response2.data.horariosDisponibles === undefined){
+                    setOpen(true)
+                }
             } catch (error) {
                 console.log(error);
             }
         } else {
-            alert("Seleccion una fecha")
+            alert("Seleccion una fecha");
         }
         setLoading(false);
     };
-
-    const horariosDisponibles = ["09:00-10:30", "10:30-12:00", "12:30-14:00", "14:00-15:30", "16:00-17:30", "17:30-19:00"];
 
     let nuevosHorarios = [];
 
@@ -200,6 +208,8 @@ function CardForm2({ onNext, onBack, veterinario, onSelectFecha, onSelectHora })
 
     // Verificar si ya se ha seleccionado fecha y hora
     const canProceed = startDate !== "" && selectedHora !== "";
+
+    const [open, setOpen] = useState(false);
 
     return (
         <div className="w-full h-auto flex flex-col rounded-xl cursor-pointer">
@@ -275,6 +285,20 @@ function CardForm2({ onNext, onBack, veterinario, onSelectFecha, onSelectHora })
                 }
             </div>
             {loading && <Loader />}
+
+            <Modal open={open} onClose={() => setOpen(false)}>
+                <div className='mx-auto my-4 w-96'>
+                    <h1 className='text-lg font-black text-gray-800 text-center'>Horarios Disponibles</h1>
+                    <p className='text-sm text-gray-500 text-center mt-3'>El Médico aun no agenda sus horarios disponibles para esa fecha.</p>
+                    <p className='font-bold text-red-500 text-center mt-3'>Por favor seleccione otra fecha</p>
+                </div>
+                <div className='flex gap-10 mt-5'>
+                    <button
+                        onClick={() => setOpen(false)}
+                        className='bg-red-500 w-full text-white p-2 rounded-lg font-bold'
+                    >Entendido</button>
+                </div>
+            </Modal>
         </div>
     );
 }

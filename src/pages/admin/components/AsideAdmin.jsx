@@ -28,7 +28,7 @@ function AsideAdmin() {
     const Menu2 = [
         { title: "Mi Cuenta", path: "/admin-cuenta", icon: PersonIcon },
         { title: "Reportes", path: "/admin", icon: AssessmentIcon },
-        { title: "Salir", path: "/admin", icon: LogoutIcon },
+        { title: "Salir", path: "/admin-exit", icon: LogoutIcon },
     ]
 
     return (

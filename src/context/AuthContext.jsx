@@ -45,6 +45,7 @@ export const AuthProvider = ({children}) => {
             console.log(res.data);
             setResponse(res.data.msj);
             localStorage.setItem("token", res?.data.token);
+            localStorage.setItem("rol", res?.data.rol);
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);
@@ -56,6 +57,7 @@ export const AuthProvider = ({children}) => {
             const res = await logout(token);
             setResponse(res.data.msj);
             localStorage.removeItem("token");
+            localStorage.removeItem("rol");
         } catch (error) {
             setErrors(error.response.data);
             console.log(error.response.data);

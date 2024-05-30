@@ -45,6 +45,8 @@ import EditCita from "./pages/user/perfil/citas/EditCita";
 import Matematicas from "./pages/user/perfil/mascotas/Matematicas";
 import CitasDetalle from "./pages/admin/citas/CitasDetalle";
 import AdminCuenta from "./pages/admin/cuenta/AdminCuenta";
+import { ProtectedRouteAdmin } from "./components/Protected/ProtectedRouteAdmin";
+import Exit from "./pages/admin/Exit";
 
 function App() {
   return (
@@ -70,6 +72,18 @@ function App() {
         <Route path='/productos-comprados' element={<ProductosComprados />} />
       </Route>
 
+      <Route element={<ProtectedRouteAdmin />} >
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin-citas' element={<AdminCitas />} />
+        <Route path='/cita-detalles' element={<CitasDetalle />} />
+        <Route path='/admin-servicios' element={<AdminServicios />} />
+        <Route path='/admin-productos' element={<AdminProductos />} />
+        <Route path='/admin-usuarios' element={<AdminUsuarios />} />
+        <Route path='/admin-mascotas' element={<AdminMascotas />} />
+        <Route path='/admin-cuenta' element={<AdminCuenta />} />
+        <Route path='/admin-exit' element={<Exit />} />
+      </Route>
+
       <Route path='/iniciar-sesion' element={<Login />} />
       <Route path='/registro' element={<Register />} />
       <Route path='/confirmar-cuenta' element={<ConfirmAccount />} />
@@ -87,18 +101,6 @@ function App() {
       <Route path='/preguntas&frecuentes' element={<PreguntasFrecuentes />} />
 
       <Route path='*' element={<NotFound />} />
-
-
-
-
-      <Route path='/admin' element={<Admin />} />
-      <Route path='/admin-citas' element={<AdminCitas />} />
-      <Route path='/cita-detalles' element={<CitasDetalle />} />
-      <Route path='/admin-servicios' element={<AdminServicios />} />
-      <Route path='/admin-productos' element={<AdminProductos />} />
-      <Route path='/admin-usuarios' element={<AdminUsuarios />} />
-      <Route path='/admin-mascotas' element={<AdminMascotas />} />
-      <Route path='/admin-cuenta' element={<AdminCuenta />} />
 
       {/* Crud Mscotas */}
       <Route path='/crud-mascotas' element={<CrudMascotas />} />

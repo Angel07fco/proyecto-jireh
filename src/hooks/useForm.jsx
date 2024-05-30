@@ -76,7 +76,12 @@ export const useForm = (initialForm, validateForm, caso) => {
                     navigate('/confirmar-cuenta', { state: { email: form.email } });
                 }
                 if (caso === 2) {
-                    navigate('/');
+                    const userRole = localStorage.getItem("rol");
+                    if (userRole === "usuario") {
+                        navigate('/');
+                    } else if (userRole === "admin") {
+                        navigate('/admin');
+                    }
                 }
                 if (caso === 3) {
                     navigate('/iniciar-sesion');

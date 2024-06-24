@@ -76,15 +76,13 @@ function TeeminosCondiciones() {
                 <h1 className="text-3xl text-secondaryBlue">Métodos de pago</h1>
                 <h1 className="text-lg font-normal ml-5">La Clínica Veterinaria Jireh acepta estos métodos de pago:</h1>
                 <h1 className="text-xl font-bold ml-5">En efectivo</h1>
-                <h1 className="text-lg font-normal ml-5">Los propietarios entregan dinero en efectivo a efectuar su compra o al término de un servicio.</h1>
-                <h1 className="text-xl font-bold ml-5">Tarjeta de Crédito</h1>
-                <h1 className="text-lg font-normal ml-5">Los propietarios pueden pagar utilizando tarjetas de crédito, esto les permite realizar compras a través de nuestra tienda en línea.</h1>
-                <h1 className="text-xl font-bold ml-5">Tarjeta de Débito</h1>
-                <h1 className="text-lg font-normal ml-5">Similar a las tarjetas de crédito, pero los fondos se deducen directamente de la cuenta bancaria del propietario.</h1>
+                <h1 className="text-lg font-normal ml-5">Los propietarios pueden realizar pagos en efectivo únicamente en nuestra tienda física durante el proceso de compra o al finalizar un servicio.</h1>
                 <h1 className="text-xl font-bold ml-5">Transferencias Bancarias</h1>
                 <h1 className="text-lg font-normal ml-5">Los propietarios pueden realizar transferencias electrónicas desde su cuenta bancaria a la cuenta del dueño de la Clínica Veterinaria Jireh.</h1>
                 <h1 className="text-xl font-bold ml-5">Otros</h1>
-                <h1 className="text-lg font-normal ml-5">En su caso el cliente puede usar algún otro método de pago, esto queda a consideración entre el dueño de la Clínica Veterinaria Jireh y el propietario.</h1>
+                <h1 className="text-lg font-normal ml-5">En casos específicos, podemos considerar otros métodos de pago previamente acordados entre el propietario y la Clínica Veterinaria Jireh. Esto puede incluir pagos en tiendas de conveniencia como Oxxo o 7-Eleven, siempre y cuando se establezca una comunicación directa para coordinar la transacción.</h1>
+                <h1 className="text-xl font-bold ml-5">Nota importante</h1>
+                <h1 className="text-lg font-normal ml-5">Restricciones y Consideraciones: Por razones de seguridad y conveniencia, ciertos métodos de pago pueden estar limitados a transacciones específicas o ubicaciones determinadas. Asegúrese de verificar con nuestro equipo la disponibilidad y las condiciones aplicables antes de realizar su pago.</h1>
 
                 <h1 className="text-3xl text-secondaryBlue">Propiedad intelectual</h1>
                 <h1 className="text-lg font-normal ml-5">Todos los derechos están reservados.</h1>
@@ -119,11 +117,25 @@ function TeeminosCondiciones() {
                 <h1 className="text-lg font-normal ml-5">En situaciones en las que se introduzcan nuevas características o mejoras en los servicios, pueden aplicarse condiciones adicionales para explicar cómo afectan estas actualizaciones a los propietarios.</h1>
 
                 <h1 className="text-3xl text-secondaryBlue">Envíos</h1>
-                <h1 className="text-lg font-normal ml-5">Al momento la Clínica Veterinaria Jireh no cuenta con un vínculo directo de alguna compañía de envíos, si no que, los envíos se tratan directamente desde la Clínica Veterinaria Jireh para hacer llegar el producto a los propietarios o en caso con algún repartidor de confianza. El costo del envió depende directamente de acorde al domicilio del propietario, el valor de consumo y puntos de fidelidad.</h1>
+                <h1 className="text-lg font-normal ml-5">En la Clínica Veterinaria Jireh, gestionamos los envíos de manera directa desde nuestras instalaciones o a través de colaboraciones con repartidores de confianza para garantizar la entrega segura y puntual de los productos a los propietarios de mascotas. A continuación se detallan nuestras prácticas y políticas de envío:</h1>
+                <h1 className="text-lg font-bold ml-8">a) Opciones de envío</h1>
+                <h1 className="text-lg font-normal ml-10">Actualmente, no contamos con un vínculo directo con una compañía de envíos específica. Sin embargo, gestionamos los envíos internamente o a través de colaboraciones con servicios de mensajería de confianza.</h1>
+                <h1 className="text-lg font-bold ml-8">b) Costo de envío</h1>
+                <h1 className="text-lg font-normal ml-10">El costo del envío se determina en función del domicilio del propietario, el valor total del consumo y los puntos de fidelidad acumulados, si aplica.</h1>
+                <h1 className="text-lg font-bold ml-8">c) Proceso de envío</h1>
+                <h1 className="text-lg font-normal ml-10">Los envíos se realizan de manera eficiente y segura, asegurando que los productos lleguen en óptimas condiciones a su destino.</h1>
+                <h1 className="text-lg font-normal ml-10">Nuestro equipo se encarga de coordinar y supervisar cada envío para garantizar la satisfacción del cliente y la integridad de los productos.</h1>
+                <h1 className="text-lg font-bold ml-8">d) Seguimiento de envíos</h1>
+                <h1 className="text-lg font-normal ml-10">Proporcionamos información de seguimiento para que los propietarios puedan monitorear el estado y la ubicación de sus pedidos en tiempo real, cuando sea aplicable.</h1>
+                <h1 className="text-lg font-bold ml-8">e) Compromiso con la calidad del servicio</h1>
+                <h1 className="text-lg font-normal ml-10">Nos comprometemos a ofrecer un servicio de envío confiable y transparente, asegurando una comunicación clara y efectiva con nuestros clientes en cada etapa del proceso de entrega.</h1>
+                <h1 className="text-lg font-bold ml-8">a) Colaboraciones con campañas de envíos</h1>
+                <h1 className="text-lg font-normal ml-10">Dependiendo de la ubicación y disponibilidad, podemos establecer colaboraciones con compañías de envíos reconocidas para mejorar la eficiencia y cobertura de nuestras entregas.</h1>
+                <h1 className="text-lg font-bold ml-8">Nota adicional:</h1>
+                <h1 className="text-lg font-normal ml-8">Aclaración sobre la Elección de Compañías de Envíos: En caso de que se establezca una colaboración con una compañía de envíos específica en el futuro, se informará a nuestros clientes de manera oportuna y se actualizarán los términos y condiciones correspondientes.</h1>
 
                 <h1 className="text-3xl text-secondaryBlue">Descuentos</h1>
-                <h1 className="text-lg font-normal ml-5">Los descuentos se establecen directamente en anuncios dentro del sitio web o al seleccionar un producto y en la Clínica Veterinaria Jireh se da a conocer estos descuentos. En algunos productos se establecer un límite de productos ya sea que para que aplique el descuento debe comprar más de 2 productos o en algunos no deberá comprar más de 3 productos.</h1>
-
+                <h1 className="text-lg font-normal ml-5">Los descuentos se establecen directamente en anuncios dentro del sitio web o al seleccionar un producto y en la Clínica Veterinaria Jireh se da a conocer estos descuentos. En algunos productos se establecer un límite de productos ya sea que para que aplique el descuento debe comprar más de 2 productos o en algunos no deberá comprar más de 3 productos.</h1>f
                 <div className="md:flex items-center justify-between pt-10">
                     <h1 className="text-xl font-bold text-secondaryBlue">Jireh se reserva el derecho de cambiar los términos de la presente Terminos y Condiciones en cualquier momento.</h1>
                     <h1 className="text-xl font-bold text-secondaryBlue">Última actualización: 14/11/2023</h1>

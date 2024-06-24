@@ -46,6 +46,19 @@ function AvisoPrivacidad() {
                     <li className="flex items-center"><span className="mr-2">[ ]</span>Prospección comercial</li>
                 </ul>
                 <h1 className="text-lg font-normal ml-5">La negativa para el uso de sus datos personales para estas finalidades no podrá ser un motivo para que le neguemos los servicios y productos que solicita o contrata con nosotros.</h1>
+                <h1 className="text-lg font-normal ml-5">Mecanismo de seguridad de datos personales.</h1>
+                <h1 className="text-lg font-bold ml-8">a) Cifrado de Datos (Encriptación)</h1>
+                <h1 className="text-lg font-normal ml-10">Cifrado en Tránsito: Utilizamos protocolos de cifrado avanzados como SSL (Secure Socket Layer) para proteger los datos personales que se transmiten entre nuestros servidores y los dispositivos de los usuarios. Esto asegura que la información se mantenga segura durante la transmisión, impidiendo que sea interceptada por terceros no autorizados.</h1>
+                <h1 className="text-lg font-normal ml-10">Cifrado en Reposo: Los datos almacenados en nuestras bases de datos se cifran utilizando técnicas de encriptación. Esto garantiza que, incluso en el improbable caso de una brecha de seguridad, la información se mantenga inaccesible y protegida.</h1>
+                <h1 className="text-lg font-bold ml-8">b) Autenticación y Control de Acceso</h1>
+                <h1 className="text-lg font-normal ml-10">Autenticación de Doble Factor (2FA): Implementamos la autenticación de doble factor para el acceso a cuentas de usuario. Esto añade una capa adicional de seguridad al requerir una segunda forma de verificación, como un código enviado a su correo electrónico, además de la contraseña habitual.</h1>
+                <h1 className="text-lg font-normal ml-10">Gestión de Acceso Basada en Roles: Controlamos el acceso a la información personal mediante la asignación de permisos específicos basados en roles dentro de nuestro sistema. Solo el personal autorizado tiene acceso a ciertos tipos de datos, minimizando el riesgo de acceso no autorizado.</h1>
+                <h1 className="text-lg font-bold ml-8">c) Certificados de Seguridad:</h1>
+                <h1 className="text-lg font-normal ml-10">Utilizamos certificados digitales SSL para autenticar nuestra plataforma y cifrar las conexiones a nuestros servidores. Esto no solo protege la información transmitida, sino que también verifica la identidad de nuestra aplicación, asegurando a los usuarios que están interactuando con una entidad legítima y segura.</h1>
+                <h1 className="text-lg font-bold ml-8">e) Validaciones</h1>
+                <h1 className="text-lg font-normal ml-10">Validaciones de Entrada de Datos: Implementamos validaciones rigurosas en todos los puntos de entrada de datos para prevenir inyecciones de código y otras formas de manipulación maliciosa.</h1>
+                <h1 className="text-lg font-bold ml-8">f) Manejo de Información Sensible</h1>
+                <h1 className="text-lg font-normal ml-10">La información sensible, como datos de salud y financieros, recibe un nivel adicional de protección. Además del cifrado y los controles de acceso, estos datos se manejan de acuerdo con estrictas políticas de privacidad y seguridad.s</h1>
 
                 <h1 className="text-3xl text-secondaryBlue">¿Qué datos personales utilizaremos para estos fines?</h1>
                 <h1 className="text-lg font-normal ml-5">Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los siguientes datos personales:</h1>

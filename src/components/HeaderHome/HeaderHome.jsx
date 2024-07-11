@@ -2,6 +2,7 @@ import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined
 import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useState, useEffect } from 'react';
+import { DivOrigami } from './ImageOrigami';
 
 const HeaderHome = () => {
     const [index, setIndex] = useState(0);
@@ -16,7 +17,7 @@ const HeaderHome = () => {
     return (
         <div className="bg-primaryBlue grid md:grid-cols-2 h-auto">
             <div className='md:mr-20 mx-10'>
-                <div className="md:mt-16 mt-8 md:ml-28">
+                <div className="md:mt-24 mt-8 md:ml-28">
                     <h1 className="text-secondaryBlue font-bold md:text-4xl text-xl">En JIREH nos preocupamos por el bienestar de tu(s) amiguit@(s):</h1>
                     <span>
                         <span className='text-secondaryBlue font-bold md:text-4xl text-xl'>{mascotas[index]}</span>
@@ -46,8 +47,8 @@ const HeaderHome = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <img src="https://res.cloudinary.com/dl8odylct/image/upload/v1706904292/perros_rbacpf.png" alt="img-mascota" className='md:mt-5 md:block hidden' />
+            <div style={{ height: '85vh' }}>
+                <DivOrigami />
             </div>
         </div>
     )

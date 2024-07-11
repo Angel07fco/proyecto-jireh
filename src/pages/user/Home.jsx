@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import HeaderHome from "../../components/HeaderHome";
 import Layout from "./Layout";
 import Servicio from "../../services/Servicio";
 import Loader from "../../components/Ui/Loader";
+import HeaderHome from "../../components/HeaderHome/HeaderHome";
 
 function Home() {
   const { data, response, errors, obtenerServicios } = Servicio();

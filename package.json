@@ -29,6 +29,7 @@
     "react-router-dom": "^6.21.3",
     "react-time-picker": "^6.6.0",
     "react-tooltip": "^5.26.3",
+    "tailwind-merge": "^2.3.0",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

@@ -18,7 +18,6 @@ function AsideAdmin() {
     const Menus = [
         { title: "Citas", path: "/admin-citas", icon: TodayIcon },
         { title: "Servicios", path: "/admin-servicios", icon: MiscellaneousServicesIcon },
-        { title: "Productos", path: "/admin-productos", icon: AddShoppingCartIcon },
         { title: "Usuarios", path: "/admin-usuarios", icon: SupervisedUserCircleIcon },
         { title: "Mascotas", path: "/admin-mascotas", icon: PetsIcon },
         //{ title: "Ofertas" },

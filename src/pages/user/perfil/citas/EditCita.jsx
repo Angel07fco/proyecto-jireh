@@ -149,7 +149,7 @@ function EditCita() {
 
     const isWeekday = (date) => {
         const day = date.getDay();
-        return day !== 0; // 0 significa domingo
+        return day !== 0;
     };
 
     const isValidDate = (date) => {
@@ -159,6 +159,7 @@ function EditCita() {
     };
 
     const [horarios, setHorarios] = useState(null);
+    const [horariosDisponibles, setHorariosDisponibles] = useState([]);
     const obtenerHorarios = async () => {
         setLoading(true);
         if (startDate !== ""){
@@ -171,6 +172,10 @@ function EditCita() {
                         },
                     })
                 setHorarios(response.data);
+
+                const response2 = await
+                axios .get(`https://backend-jireh.onrender.com/api/v1/horario/${medico}/${formattedDate}`)
+                setHorariosDisponibles(response2.data.horariosDisponibles);
                 console.log(response.data)
             } catch (error) {
                 console.log(error);
@@ -180,8 +185,6 @@ function EditCita() {
         }
         setLoading(false);
     };
-
-    const horariosDisponibles = ["09:00-10:30", "10:30-12:00", "12:30-14:00", "14:00-15:30", "16:00-17:30", "17:30-19:00"];
 
     let nuevosHorarios = [];
 

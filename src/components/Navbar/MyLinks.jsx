@@ -58,71 +58,36 @@ export const links = [
     },
     {
         name: "Tienda",
-        link: "/tienda",
+        link: "",
         submenu: true,
         sublinks:[
             {
                 Head: "Alimentos",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             },
             {
                 Head: "Medicamentos",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             },
             {
                 Head: "Tratamientos",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             },
             {
                 Head: "Higiene y Cuiadado",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             },
             {
                 Head: "Accesorios",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             },
             {
                 Head: "Limpieza",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             },
             {
                 Head: "Viaje y Transporte",
-                sublink: [
-                    { name: "Domestico", link: "/" },
-                    { name: "Granja", link: "/" },
-                    { name: "Acuaticos", link: "/" },
-                    { name: "Exoticos", link: "/" },
-                ]
+                sublink: []
             }
         ]
     }

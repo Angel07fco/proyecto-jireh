@@ -17,7 +17,6 @@ function Citas() {
                         <FormCita />
                     </div>
                 </div>
-
             </section>
         </Layout>
     )

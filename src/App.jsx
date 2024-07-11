@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import './App.css'
+import './App.css';
 
 import Home from './pages/user/Home';
 import NotFound from "./pages/NotFound";
@@ -55,7 +55,7 @@ function App() {
       <Route path='/citas' element={<Citas />} />
       <Route path='/servicios' element={<Servicios />} />
       <Route path='/servicio-seleccionado' element={<ServicioSeleccionado />} />
-      <Route path='/tienda' element={<Tienda />} />
+      <Route path='/' element={<Tienda />} />
       <Route path='/producto-seleccionado/:nombre' element={<ProductoSeleccionado />} />
       <Route path='/quienes-somos' element={<QuienesSomos />} />
       <Route path='/contacto' element={<Contacto />} />
@@ -69,7 +69,7 @@ function App() {
         <Route path='/historial-citas' element={<HistorialCitas />} />
         <Route path='/edit-cita' element={<EditCita />} />
         <Route path='/calculo-alimento' element={<Matematicas />} />
-        <Route path='/productos-comprados' element={<ProductosComprados />} />
+        <Route path='/cuenta' element={<ProductosComprados />} />
       </Route>
 
       <Route element={<ProtectedRouteAdmin />} >
@@ -77,7 +77,7 @@ function App() {
         <Route path='/admin-citas' element={<AdminCitas />} />
         <Route path='/cita-detalles' element={<CitasDetalle />} />
         <Route path='/admin-servicios' element={<AdminServicios />} />
-        <Route path='/admin-productos' element={<AdminProductos />} />
+        <Route path='/admin' element={<AdminProductos />} />
         <Route path='/admin-usuarios' element={<AdminUsuarios />} />
         <Route path='/admin-mascotas' element={<AdminMascotas />} />
         <Route path='/admin-cuenta' element={<AdminCuenta />} />

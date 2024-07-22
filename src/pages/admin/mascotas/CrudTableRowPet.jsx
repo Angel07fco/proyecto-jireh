@@ -1,6 +1,6 @@
-function CrudTableRowPet({el, setDataToEdit, deleteData}) {
+function CrudTableRowPet({el, habilitar, deshabilitar}) {
 
-    let { _id, usuario, imagen, mascota, categoria, especie, raza, tamano, genero, age, peso } = el;
+    let { id, usuario, imagen, mascota, categoria, especie, raza, tamano, genero, age, peso, estado } = el;
 
     return (
         <tr>
@@ -18,6 +18,27 @@ function CrudTableRowPet({el, setDataToEdit, deleteData}) {
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{age}</td>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{peso}</td>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                {
+                    estado === "disponible"
+                    ?
+                        <div
+                            onClick={() => deshabilitar(id)}
+                            className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60"
+                        >
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                            <h2 className="text-sm font-normal text-emerald-500">{estado}</h2>
+                        </div>
+                    :
+                        <div
+                            onClick={() => habilitar(id)}
+                            className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60"
+                        >
+                            <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                            <h2 className="text-sm font-normal text-red-500">no disponible</h2>
+                        </div>
+                }
+            </td>
+            {/* <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="flex items-center gap-x-6">
                     <button
                     onClick={() => setDataToEdit(el)}
@@ -34,7 +55,7 @@ function CrudTableRowPet({el, setDataToEdit, deleteData}) {
                         </svg>
                     </button>
                 </div>
-            </td>
+            </td> */}
         </tr>
     )
 }

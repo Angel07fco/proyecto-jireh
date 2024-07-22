@@ -1,6 +1,6 @@
 import CrudTableRowUser from "./CrudTableRowUser";
 
-function CrudTableUser({ data, setDataToEdit, deleteData }) {
+function CrudTableUser({ data, habilitar, deshabilitar }) {
     return (
         <div className="mt-10">
             <h1 className="bg-secondaryBlue text-primaryBlue p-2 text-center font-medium text-xl">Tabla de Datos de Usuarios</h1>
@@ -8,11 +8,11 @@ function CrudTableUser({ data, setDataToEdit, deleteData }) {
                 <thead className="bg-gray-50">
                 <tr>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Usuario</th>
+                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Foto</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Email</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Phone</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Rol</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Estado</th>
-                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,8 +25,8 @@ function CrudTableUser({ data, setDataToEdit, deleteData }) {
                             <CrudTableRowUser
                                 key={index}
                                 el={el}
-                                setDataToEdit={setDataToEdit}
-                                deleteData={deleteData}
+                                habilitar={habilitar}
+                                deshabilitar={deshabilitar}
                             />
                         ))
                     )}

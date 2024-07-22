@@ -93,11 +93,11 @@ function FormForgotPassword() {
                                         ?
                                             <Loader />
                                         :
-                                            <Button texto="Crear cuenta" bg="secondaryBlue" textoColor="white" />
+                                            <Button texto="Restablecer contraseña" bg="secondaryBlue" textoColor="white" />
                                     }
                                 </>
                             :
-                                <ButtonDisabled texto="Crear cuenta" bg="gray-500" />
+                                <ButtonDisabled texto="Restablecer contraseña" bg="gray-500" />
                         }
                     </div>
                 </form>

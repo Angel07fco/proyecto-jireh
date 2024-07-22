@@ -101,11 +101,6 @@ function Navbar() {
                                     <span className="sr-only">Notifications</span>
                                     <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-secondaryBlue bg-primaryBlue border-2 border-secondaryBlue rounded-full -top-2 -end-2">0</div>
                                 </button>
-                                <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-primaryBlue hover:text-secondaryBlue bg-secondaryBlue rounded-lg hover:bg-primaryBlue">
-                                    <ShoppingCartIcon fontSize="small" />
-                                    <span className="sr-only">Notifications</span>
-                                    <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-secondaryBlue bg-primaryBlue border-2 border-secondaryBlue rounded-full -top-2 -end-2">0</div>
-                                </button>
                                 <DropdownMenu name={user.user} />
                             </div>
                         ) : (

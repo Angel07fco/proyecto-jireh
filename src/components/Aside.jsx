@@ -5,7 +5,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PetsIcon from '@mui/icons-material/Pets';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 
 function Aside({ selected }) {
@@ -18,7 +17,6 @@ function Aside({ selected }) {
         { text: "Mis mascotas", path: "/mascotas", icon: PetsIcon, id: 1 },
         { text: "Historial médico", path: "/historial-medico", icon: MedicalServicesIcon, id: 2 },
         { text: "Historial de citas", path: "/historial-citas", icon: EventNoteIcon, id: 3 },
-        { text: "Productos comprados", path: "/productos-comprados", icon: ShoppingBagIcon, id: 4 }
     ];
 
     useEffect(() => {

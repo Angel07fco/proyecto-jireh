@@ -119,7 +119,7 @@ function CardForm1({ onSelectVet, onNext }) {
                 <h1 className='font-bold text-primaryBlue text-xl'>Paso 1:</h1>
                 <h1 className='ml-2 text-primaryBlue text-xl'>Seleccione el Médico de su confianza</h1>
             </div>
-            <div className='w-full flex space-x-10 py-10'>
+            <div className='w-full grid grid-cols-2 space-x-10 py-10'>
                 {medicos.map((item, index) => (
                     <div
                         key={index}

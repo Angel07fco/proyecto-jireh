@@ -47,6 +47,13 @@ import CitasDetalle from "./pages/admin/citas/CitasDetalle";
 import AdminCuenta from "./pages/admin/cuenta/AdminCuenta";
 import { ProtectedRouteAdmin } from "./components/Protected/ProtectedRouteAdmin";
 import Exit from "./pages/admin/Exit";
+import Blog from "./pages/user/Blog";
+import Galeria from "./pages/user/Galeria";
+import AdminBlog from "./pages/admin/blog/AdminBlog";
+import AdminGaleria from "./pages/admin/galeria/AdminGaleria";
+import AdminFaq from "./pages/admin/faq/AdminFaq";
+import BlogListado from "./pages/user/BlogListado";
+import BlogListadoInfo from "./pages/user/BlogListadoInfo";
 
 function App() {
   return (
@@ -59,6 +66,11 @@ function App() {
       <Route path='/producto-seleccionado/:nombre' element={<ProductoSeleccionado />} />
       <Route path='/quienes-somos' element={<QuienesSomos />} />
       <Route path='/contacto' element={<Contacto />} />
+      <Route path='/blog' element={<Blog />} />
+      <Route path='/blog-listado' element={<BlogListado />} />
+      <Route path='/blog-listado-detalles' element={<BlogListadoInfo />} />
+      <Route path='/galeria' element={<Galeria />} />
+      <Route path='/preguntas-frecuentes' element={<PreguntasFrecuentes />} />
 
       <Route element={<ProtectedRoute />} >
         <Route path='/cuenta' element={<Cuenta />} />
@@ -77,10 +89,13 @@ function App() {
         <Route path='/admin-citas' element={<AdminCitas />} />
         <Route path='/cita-detalles' element={<CitasDetalle />} />
         <Route path='/admin-servicios' element={<AdminServicios />} />
+        <Route path='/admin-blog' element={<AdminBlog />} />
+        <Route path='/admin-galeria' element={<AdminGaleria />} />
         <Route path='/admin' element={<AdminProductos />} />
         <Route path='/admin-usuarios' element={<AdminUsuarios />} />
         <Route path='/admin-mascotas' element={<AdminMascotas />} />
         <Route path='/admin-cuenta' element={<AdminCuenta />} />
+        <Route path='/admin-faq' element={<AdminFaq />} />
         <Route path='/admin-exit' element={<Exit />} />
       </Route>
 

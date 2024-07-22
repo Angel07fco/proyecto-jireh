@@ -1,16 +1,17 @@
 import CrudTableRowServ from "./CrudTableRowServ";
 
-function CrudTableServ({ data, setDataToEdit, deleteData }) {
+function CrudTableServ({ data, editData, deleteData, deshabilitar, habilitar }) {
     return (
         <div className="mt-10">
-            <h1 className="bg-secondaryBlue text-primaryBlue p-2 text-center font-medium text-xl">Tabla de Datos de Usuarios</h1>
+            <h1 className="bg-secondaryBlue text-primaryBlue p-2 text-center font-medium text-xl">Tabla de Datos de Servicios</h1>
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                 <tr>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Servicio</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Imagen</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Icono</th>
-                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Precio</th>
+                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Descripción</th>
+                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Estado</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Opciones</th>
                 </tr>
                 </thead>
@@ -24,8 +25,10 @@ function CrudTableServ({ data, setDataToEdit, deleteData }) {
                             <CrudTableRowServ
                                 key={index}
                                 el={el}
-                                setDataToEdit={setDataToEdit}
+                                editData={editData}
                                 deleteData={deleteData}
+                                habilitar={habilitar}
+                                deshabilitar={deshabilitar}
                             />
                         ))
                     )}

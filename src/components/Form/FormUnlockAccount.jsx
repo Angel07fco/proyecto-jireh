@@ -82,11 +82,11 @@ function FormConfirmAccount() {
                                         ?
                                             <Loader />
                                         :
-                                            <Button texto="Restablecer contraseña" bg="secondaryBlue" textoColor="white" />
+                                            <Button texto="Verificar código" bg="secondaryBlue" textoColor="white" />
                                     }
                                 </>
                             :
-                                <ButtonDisabled texto="Restablecer contraseña" bg="gray-500" />
+                                <ButtonDisabled texto="Verificar código" bg="gray-500" />
                         }
                     </div>
                 </form>

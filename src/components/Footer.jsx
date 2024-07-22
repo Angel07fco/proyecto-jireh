@@ -38,9 +38,15 @@ function Footer() {
                             <p className='hover:underline mt-2 text-sm'>Nuestros servicios</p>
                             <p className='hover:underline mt-2 text-sm'>Citas</p>
                             <p className='hover:underline mt-2 text-sm'>Testimonios</p>
-                            <p className='hover:underline mt-2 text-sm'>Galería</p>
-                            <p className='hover:underline mt-2 text-sm'>FAQ (Preguntas Frecuentes)</p>
-                            <p className='hover:underline mt-2 text-sm'>Blog</p>
+                            <Link to="/galeria">
+                                <p className='hover:underline mt-2 text-sm'>Galería</p>
+                            </Link>
+                            <Link to="/preguntas-frecuentes">
+                                <p className='hover:underline mt-2 text-sm'>FAQ (Preguntas Frecuentes)</p>
+                            </Link>
+                            <Link to="/blog">
+                                <p className='hover:underline mt-2 text-sm'>Blog</p>
+                            </Link>
                             <p className='hover:underline mt-2 text-sm'>Comentarios</p>
                         </div>
                     </div>

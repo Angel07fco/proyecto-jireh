@@ -1,8 +1,5 @@
-import React from "react";
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import AssessmentIcon from '@mui/icons-material/Assessment';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ComputerIcon from '@mui/icons-material/Computer';
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,25 +7,26 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import TodayIcon from '@mui/icons-material/Today';
 import PetsIcon from '@mui/icons-material/Pets';
+import CollectionsIcon from '@mui/icons-material/Collections';
+import BookIcon from '@mui/icons-material/Book';
+import QuizIcon from '@mui/icons-material/Quiz';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function AsideAdmin() {
     const [open, setOpen] = useState(true);
+    const location = useLocation();
     const Menus = [
         { title: "Citas", path: "/admin-citas", icon: TodayIcon },
         { title: "Servicios", path: "/admin-servicios", icon: MiscellaneousServicesIcon },
         { title: "Usuarios", path: "/admin-usuarios", icon: SupervisedUserCircleIcon },
         { title: "Mascotas", path: "/admin-mascotas", icon: PetsIcon },
-        //{ title: "Ofertas" },
-        //{ title: "Ventas" }
-    ]
-
-    const Menu2 = [
+        { title: "Blog", path: "/admin-blog", icon: BookIcon },
+        { title: "Galeria", path: "/admin-galeria", icon: CollectionsIcon },
+        { title: "Preguntas frecuentes", path: "/admin-faq", icon: QuizIcon },
         { title: "Mi Cuenta", path: "/admin-cuenta", icon: PersonIcon },
-        { title: "Reportes", path: "/admin", icon: AssessmentIcon },
-        { title: "Salir", path: "/admin-exit", icon: LogoutIcon },
-    ]
+        { title: "Salir", path: "/admin-exit", icon: LogoutIcon }
+    ];
 
     return (
         <div className="flex fixed">
@@ -51,54 +49,29 @@ function AsideAdmin() {
                 </div>
 
                 <ul className='pt-2'>
-                {Menus.map((menu, index) => (
-                    <li
-                        className="flex items-center justify-center p-2 text-primaryBlue text-sm gap-x-4 cursor-pointer hover:text-secondaryBlue hover:bg-primaryBlue rounded-md mt-2"
-                        key={index}
-                    >
-                        <span
-                            title={menu.title}
-                            className={`text-2xl block float-left ${!open ? "tooltip" : ""}`}
+                    {Menus.map((menu, index) => (
+                        <li
+                            className={`flex items-center justify-center p-2 text-primaryBlue text-sm gap-x-4 cursor-pointer hover:text-secondaryBlue hover:bg-primaryBlue rounded-md mt-2 ${location.pathname === menu.path && "bg-primaryBlue text-secondaryBlue"}`}
+                            key={index}
                         >
-                            <menu.icon />
-                            {!open && (
-                                <span className="hidden group-hover:inline ml-2">{menu.title}</span>
-                            )}
-                        </span>
-                        <Link
-                            to={menu.path}
-                            className={`text-base font-medium flex-1 duration-200 pt-1 ${!open && "hidden"} hover:underline`}
-                        >
-                            {menu.title}
-                        </Link>
-                    </li>
-                ))}
+                            <span
+                                title={menu.title}
+                                className={`text-2xl block float-left ${!open ? "tooltip" : ""}`}
+                            >
+                                <menu.icon />
+                                {!open && (
+                                    <span className="hidden group-hover:inline ml-2">{menu.title}</span>
+                                )}
+                            </span>
+                            <Link
+                                to={menu.path}
+                                className={`text-base font-medium flex-1 duration-200 pt-1 ${!open && "hidden"} hover:underline`}
+                            >
+                                {menu.title}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
-
-                <ul className='mt-10'>
-                {Menu2.map((menu, index) => (
-                    <li
-                    className="flex items-center justify-center p-2 text-primaryBlue text-sm gap-x-4 cursor-pointer hover:text-secondaryBlue hover:bg-primaryBlue rounded-md mt-2"
-                    key={index}
-                    >
-                        <span
-                            title={menu.title}
-                            className={`text-2xl block float-left ${!open ? "tooltip" : ""}`}
-                        >
-                            <menu.icon className='m-0 p-0' />
-                            {!open && (
-                                <span className="hidden group-hover:inline ml-2">{menu.title}</span>
-                            )}
-                        </span>
-                        <Link
-                            to={menu.path}
-                            className={`text-base font-medium flex-1 duration-200 pt-1 ${!open && "hidden"}`}>
-                            {menu.title}
-                        </Link>
-                    </li>
-                ))}
-                </ul>
-
             </div>
         </div>
     )

@@ -45,7 +45,7 @@ function FormLogin() {
                 navigate('/confirmar-cuenta', { state: { email: form.email } });
             }
             if (responseErrors === "La cuenta ha sido bloqueada temporalmente. Comprueba tu bandeja de entrada.") {
-                navigate('/desbloquear-cuenta', { state: { email: form.email } });
+                navigate('/confirmar-codigo', { state: { email: form.email } });
             }
         }, 5000);
         return () => clearTimeout(timeoutId);

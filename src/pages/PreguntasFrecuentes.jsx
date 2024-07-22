@@ -1,8 +1,23 @@
-import FaqWeb from "../components/FaqWeb";
+import { useEffect, useState } from 'react';
 import Header from "../components/Header/Header";
+import Loader from "../components/Ui/Loader";
+import FaqWeb from "../components/FaqWeb";
 import Layout from "./user/Layout";
+import axios from "axios";
 
 function PreguntasFrecuentes() {
+    const [faqs, setFaqs] = useState([]);
+    const [loading, setLoading] = useState([]);
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+            .get('https://backend-jireh.onrender.com/api/v1/preguntas-frecuentes')
+            .then(({ data } ) => setFaqs(data))
+            .catch((error) => console.log(error))
+        setLoading(false);
+    }, [faqs])
+
     return (
         <Layout>
             <Header texto="PREGUNTAS FRECUENTES (FAQ)" linkText="Preguntas frecuentes" />
@@ -12,32 +27,27 @@ function PreguntasFrecuentes() {
                         <h1 className="text-xl font-semibold text-gray-800">Tabla de contenidos</h1>
 
                         <div className="mt-4 space-y-4 lg:mt-8">
-                            <a className="block text-blue-500 hover:underline">General</a>
-                            <a className="block text-gray-500 hover:underline">Citas</a>
-                            <a className="block text-gray-500 hover:underline">Servicios</a>
-                            <a className="block text-gray-500 hover:underline">Tienda</a>
-                            <a className="block text-gray-500 hover:underline">Sobre nosotros</a>
+                            <a className="block text-blue-500 hover:underline cursor-pointer">General</a>
+                            <a className="block text-gray-500 hover:underline cursor-pointer">Citas</a>
+                            <a className="block text-gray-500 hover:underline cursor-pointer">Servicios</a>
+                            <a className="block text-gray-500 hover:underline cursor-pointer">Tienda</a>
+                            <a className="block text-gray-500 hover:underline cursor-pointer">Sobre nosotros</a>
                         </div>
                     </div>
                     <div className="flex-1 mt-8 lg:mx-12 lg:mt-0">
-                        <FaqWeb
-                            question="¿Cómo puedo agendar una cita?"
-                            reply="Respuesta..."
-                        />
-                        <hr className="my-8 border-gray-200 dark:border-secondaryBlue"></hr>
-                        <FaqWeb
-                            question="¿Cuáles son los servicios que ofrece la veterinaria?"
-                            reply="Respuesta..."
-                        />
-                        <hr className="my-8 border-gray-200 dark:border-secondaryBlue"></hr>
-                        <FaqWeb
-                            question="¿Ofrecen servicios de urgencias y cómo puedo contactarlos?"
-                            reply="Respuesta..."
-                        />
-                        <hr className="my-8 border-gray-200 dark:border-secondaryBlue"></hr>
+                        {faqs.map((item, index) => (
+                            <div key={index}>
+                                <FaqWeb
+                                    question={item.pregunta}
+                                    reply={item.respuesta}
+                                />
+                                <hr className="my-8 border-gray-200 dark:border-secondaryBlue"></hr>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
+            {loading && <Loader />}
         </Layout>
     )
 }

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Layout from "../../Layout";
 import Aside from "../../../../components/Aside";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../../../../components/Ui/Input";
 import Label from "../../../../components/Ui/Label";
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,16 +9,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { arraypets } from "../../../../helpers/ArrayPets";
+import Loader from "../../../../components/Ui/Loader";
+import Success from "../../../../components/Ui/Alertas/Success";
+import Danger from "../../../../components/Ui/Alertas/Danger";
 
 function EditMascota() {
     const { state } = useLocation();
     const { id } = state;
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
+    const [responseErrors, setResponseErrors] = useState(false);
+    const [responseSuccess, setResponseSuccess] = useState(false);
 
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const { register, formState: { errors }, watch } = useForm();
     const selectedCategoria = watch("categoria", "");
-    const selectedEspecie = watch("especie", "");
 
     const [loading, setLoading] = useState(false);
 
@@ -63,44 +67,166 @@ function EditMascota() {
         setLoading(false);
     }
 
+    const [open5, setOpen5] = useState(false);
+    const eliminarMascota = () => {
+        setOpen5(true);
+    };
+
+
+    const confirmarEliminarMascota = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.delete(
+                `https://backend-jireh.onrender.com/api/v1/pet/${id._id}`,
+                {},
+                {
+                    headers: {
+                        "x-access-token": token
+                    }
+                }
+            );
+            setResponseSuccess(response.data.msj);
+            setLoading(false);
+        } catch (error) {
+            if (error.response) {
+                setResponseErrors(error.response.data);
+            } else {
+                setResponseErrors("Error al conectar con el servidor");
+            }
+    }
+        setOpen5(false);
+        setLoading(false);
+    };
+
+    const [selectedImage, setSelectedImage] = useState("");
+    const handleImageChange = async (event) => {
+        setLoading(true);
+        event.preventDefault();
+        const data = {
+            "img": selectedImage
+        };
+        try {
+            const response = await axios.put(`https://backend-jireh.onrender.com/api/v1/pet/actualizar/${id._id}`, data, {
+                headers: {
+                    "x-access-token": token // Asegúrate de que token esté definido
+                },
+            });
+            setLoading(false);
+            console.log("Formulario enviado:", response);
+            navigate("/mascotas");
+        } catch (error) {
+            console.error("Error al enviar el formulario:", error);
+        }
+        setLoading(false);
+    }
+
+    const uploadImage = async (e) => {
+        setLoading(true);
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "proyectojireh");
+
+        const response = await axios.post(
+            "https://api.cloudinary.com/v1_1/dl8odylct/image/upload",
+            data
+        );
+        console.log(response.data)
+        setSelectedImage(response.data.secure_url);
+        console.log(response.data.secure_url);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        if (responseErrors && responseErrors.length > 0) {
+            const timer = setTimeout(() => {
+                navigate("/mascotas");
+                setResponseErrors(null);
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [responseErrors]);
+
+    useEffect(() => {
+        if (responseSuccess && responseSuccess.length > 0) {
+            const timer = setTimeout(() => {
+                navigate("/mascotas");
+                setResponseSuccess(null);
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [responseSuccess]);
+
     return (
         <Layout>
             <div className="flex">
                 <Aside selected={1} />
+                {loading && <Loader />}
+                {responseSuccess && <Success mensaje={responseSuccess} />}
+                {responseErrors && <Danger mensaje={responseErrors} />}
                 <div className="w-full h-[100vh] overflow-y-scroll">
                     <div className="mx-10">
                         <h1 className="bg-secondaryBlue text-primaryBlue p-3 text-3xl text-center mt-5">{id.name}</h1>
                         <div className="mt-10 w-full flex">
                             <div className="w-2/6">
-                                {renderImg
-                                    ?
-                                        <>
-                                            <div className="bg-primaryBlue w-[80%] ml-[10%] rounded-full mb-5">
-
-                                            </div>
-                                            <input type="file" />
-                                            <div
-                                                className="mt-3 cursor-pointer text-secondaryBlue font-bold text-lg"
-                                                onClick={() => setRenderImg(false)}
-                                            >
-                                                Cancelar
-                                            </div>
-                                        </>
-                                    :
-                                        <>
-                                            <div className="bg-primaryBlue w-[80%] ml-[10%] rounded-full mb-5">
-                                                <img src={id.img} className="w-[100%] h-[100%]" />
-                                            </div>
-                                            <button
-                                                className="w-full rounded-2xl border-2 border-secondaryBlue bg-white px-6 py-3
-                                                font-semibold uppercase text-secondaryBlue transition-all duration-300
-                                                hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md
-                                                hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px]
-                                                active:rounded-2xl active:shadow-none"
-                                                onClick={() => setRenderImg(true)}
-                                            >Actualizar Imagen</button>
-                                        </>
-                                }
+                                {renderImg ? (
+                                    <>
+                                        <div className="bg-primaryBlue w-[80%] ml-[10%] rounded-full mb-5">
+                                            {selectedImage && (
+                                                <img src={selectedImage} className="w-[100%] h-[100%]" alt="Vista previa" />
+                                            )}
+                                        </div>
+                                        <form onSubmit={handleImageChange}>
+                                            <input type="file" name="image" onChange={uploadImage} />
+                                            {selectedImage && (
+                                                <button
+                                                    type="submit"
+                                                    className="w-full rounded-2xl border-2 border-secondaryBlue bg-white px-6 py-3
+                                                    font-semibold uppercase text-secondaryBlue transition-all duration-300
+                                                    hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md
+                                                    hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px]
+                                                    active:rounded-2xl active:shadow-none mt-3"
+                                                >
+                                                    Guardar Imagen
+                                                </button>
+                                            )}
+                                        </form>
+                                        <div
+                                            className="mt-3 cursor-pointer text-secondaryBlue font-bold text-lg"
+                                            onClick={() => setRenderImg(false)}
+                                        >
+                                            Cancelar
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="bg-primaryBlue w-[80%] ml-[10%] rounded-full mb-5">
+                                            <img src={id.img} className="w-[100%] h-[100%]" alt="Imagen de la mascota" />
+                                        </div>
+                                        <button
+                                            className="w-full rounded-2xl border-2 border-secondaryBlue bg-white px-6 py-3
+                                            font-semibold uppercase text-secondaryBlue transition-all duration-300
+                                            hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md
+                                            hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px]
+                                            active:rounded-2xl active:shadow-none"
+                                            onClick={() => setRenderImg(true)}
+                                        >
+                                            Actualizar Imagen
+                                        </button>
+                                    </>
+                                )}
+                                <div className="mt-5">
+                                    <button
+                                        className="w-full rounded-2xl border-2 border-secondaryBlue bg-white px-6 py-3
+                                        font-semibold uppercase text-secondaryBlue transition-all duration-300
+                                        hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md
+                                        hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px]
+                                        active:rounded-2xl active:shadow-none"
+                                        onClick={eliminarMascota}
+                                    >
+                                        Eliminar Mascota
+                                    </button>
+                                </div>
                             </div>
 
                             <div className="w-4/6 px-10">
@@ -333,7 +459,7 @@ function EditMascota() {
                                                                 <Label>Raza</Label>
                                                                 <Input
                                                                     disabled
-                                                                    value={id.tamano}
+                                                                    value={id.raza}
                                                                 />
                                                             </div>
                                                         </div>
@@ -458,9 +584,48 @@ function EditMascota() {
                         </div>
                     </div>
                 </div>
+                <Modal open={open5} onClose={() => setOpen5(false)}>
+                    <div className='mx-auto my-4 w-96 mb-3'>
+                        <h1 className='text-lg font-black text-gray-800 text-center'>Eliminar Mascota</h1>
+                        <p className='text-sm text-gray-500 text-center mt-3'>¿Estas seguro que deseas eliminar esta mascota?</p>
+                    </div>
+                    <div className="flex gap-10 mt-10">
+                        <button
+                            onClick={() => setOpen5(!open5)}
+                            className="bg-red-500 w-full text-white p-2 rounded-lg font-bold"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            onClick={confirmarEliminarMascota}
+                            className="bg-primaryBlue w-full text-secondaryBlue p-2 rounded-lg font-bold"
+                        >
+                            Confirmar
+                        </button>
+                    </div>
+                </Modal>
             </div>
         </Layout>
     )
+}
+
+function Modal({ open, onClose, children }) {
+    return (
+        <div
+            className={`fixed z-40 inset-0 flex justify-center items-center transition-colors ${
+                open ? "visible bg-gray-900 bg-opacity-70" : "invisible"
+            }`}
+        >
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={`bg-white w-[50%] rounded-xl shadow p-6 transition-all ${
+                open ? "scale-100 opacity-100" : "scale-125 opacity-0"
+                }`}
+            >
+                {children}
+            </div>
+        </div>
+    );
 }
 
 export default EditMascota

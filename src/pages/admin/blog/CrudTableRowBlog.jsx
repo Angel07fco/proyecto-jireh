@@ -1,15 +1,15 @@
-function CrudTableRowHorarios({el, editData, deleteData,}) {
-    let { _id, date, horaFin, horaInicio, horariosDisponibles } = el;
-
-    // Convertir el arreglo horariosDisponibles a una cadena separada por comas
-    const horariosStr = horariosDisponibles.join(', ');
+function CrudTableRowGaleria({ el, editData, deleteData }) {
+    let { _id, categories, title, content, author, imageUrl } = el;
 
     return (
         <tr>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{date}</td>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{horaInicio}</td>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{horaFin}</td>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal w-[60%] h-auto max-w-xs break-words">{horariosStr}</td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                <img src={imageUrl} className="w-12 h-12" />
+            </td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal">{categories}</td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal">{title}</td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal">{content}</td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal">{author}</td>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="flex items-center gap-x-6">
                     <button
@@ -34,4 +34,4 @@ function CrudTableRowHorarios({el, editData, deleteData,}) {
     )
 }
 
-export default CrudTableRowHorarios;
+export default CrudTableRowGaleria;

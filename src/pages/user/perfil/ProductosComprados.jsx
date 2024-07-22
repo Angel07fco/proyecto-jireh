@@ -8,7 +8,7 @@ function ProductosComprados() {
             <div className="flex">
                 <Aside selected={4} />
                 <div className="w-full">
-                <Header texto="Mis productos comprados" linkText="Productos comprados" />
+                    <Header texto="Mis productos comprados" linkText="Productos comprados" />
                 </div>
             </div>
         </Layout>

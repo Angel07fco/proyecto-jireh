@@ -1,15 +1,10 @@
-function CrudTableRowHorarios({el, editData, deleteData,}) {
-    let { _id, date, horaFin, horaInicio, horariosDisponibles } = el;
-
-    // Convertir el arreglo horariosDisponibles a una cadena separada por comas
-    const horariosStr = horariosDisponibles.join(', ');
+function CrudTableRowFaq({ el, editData, deleteData }) {
+    let { _id, pregunta, respuesta } = el;
 
     return (
         <tr>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{date}</td>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{horaInicio}</td>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{horaFin}</td>
-            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal w-[60%] h-auto max-w-xs break-words">{horariosStr}</td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal w-[30%] h-auto max-w-xs break-words">{pregunta}</td>
+            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-normal w-[60%] h-auto max-w-xs break-words">{respuesta}</td>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="flex items-center gap-x-6">
                     <button
@@ -34,4 +29,4 @@ function CrudTableRowHorarios({el, editData, deleteData,}) {
     )
 }
 
-export default CrudTableRowHorarios;
+export default CrudTableRowFaq;

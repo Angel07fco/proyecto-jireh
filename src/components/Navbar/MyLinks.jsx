@@ -5,58 +5,48 @@ export const links = [
         submenu: true,
         sublinks:[
             {
-                Head: "Men 1",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
+                Head: "Urgencias",
+                sublink: []
             },
             {
-                Head: "Men 2",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
+                Head: "Consulta general",
+                sublink: []
             },
             {
-                Head: "Men 3",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
+                Head: "Servicio a domicilio",
+                sublink: []
             },
             {
-                Head: "Men 4",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
+                Head: "Vacunación",
+                sublink: []
             },
             {
-                Head: "Men 5",
-                sublink: [
-                    { name: "T-shirt", link: "/" },
-                    { name: "Casual shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" },
-                    { name: "Formal shirts", link: "/" }
-                ]
-            }
+                Head: "Desparasitación",
+                sublink: []
+            },
+            {
+                Head: "Limpieza dental",
+                sublink: []
+            },
+            {
+                Head: "Cirugías",
+                sublink: []
+            },
+            {
+                Head: "Ultrasonido",
+                sublink: []
+            },
+            {
+                Head: "Hospitalización",
+                sublink: []
+            },
+            {
+                Head: "Estética",
+                sublink: []
+            },
         ]
     },
-    {
+    /* {
         name: "Tienda",
         link: "",
         submenu: true,
@@ -90,5 +80,5 @@ export const links = [
                 sublink: []
             }
         ]
-    }
+    } */
 ];

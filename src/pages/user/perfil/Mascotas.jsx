@@ -16,6 +16,7 @@ function Mascotas() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         if (token) {
             axios
                 .get(`https://backend-jireh.onrender.com/api/v1/user/obtenerusuario/${token}`, {
@@ -25,8 +26,10 @@ function Mascotas() {
                 })
                 .then(({ data } ) => setUser(data))
                 .catch((error) => console.log(error))
+                setLoading(false);
         }
-    }, [token])
+        setLoading(false);
+    }, [user])
 
     console.log(user)
 
@@ -43,6 +46,7 @@ function Mascotas() {
                 .catch((error) => console.log(error))
                 setLoading(false);
         }
+        setLoading(false);
     }, [user])
 
     console.log(datos);
@@ -109,8 +113,8 @@ function CardPet({id, img, name, category, especie, size, raza, age, peso, gener
                 </h1>
                 <h1 className="bg-secondaryBlue text-primaryBlue py-1 px-2 rounded-lg font-medium">{especie}</h1>
             </div>
-            <div className="flex justify-center items-center">
-                <img src={img} className="w-[90%] h-[100%]" />
+            <div className="flex justify-center my-5 items-center">
+                <img src={img} className="w-[90%] h-52" />
             </div>
             <div className="px-5">
                 <h1 className="text-secondaryBlue font-medium">{name} ({genero})</h1>

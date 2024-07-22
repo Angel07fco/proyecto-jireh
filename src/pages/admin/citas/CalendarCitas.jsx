@@ -24,7 +24,9 @@ function CalendarCitas() {
             .catch((error) => console.log(error))
             .finally(() => setLoading(false));
         }
-    }, []);
+    }, [db]);
+
+    console.log(db)
 
     moment.locale('es');
     const localizer = momentLocalizer(moment);
@@ -48,7 +50,10 @@ function CalendarCitas() {
         medico: item.medico,
         mascota: item.mascota,
         servicio: item.servicio,
+        img: item.imagen,
         hora: item.hora,
+        fecha: item.fecha,
+        comentarios: item.comentarios,
         start: new Date(moment(item.fecha, 'DD-MM-YYYY').toDate()),
         end: new Date(moment(item.fecha, 'DD-MM-YYYY').toDate()),
     }));
@@ -61,8 +66,6 @@ function CalendarCitas() {
         const handleNavigate = () => {
             navigate('/cita-detalles', { state: { cita } });
         };
-
-        console.log(cita)
 
         return (
             <div className="block p-1 rounded-lg shadow-md max-h-24 overflow-y-auto" onClick={handleNavigate}>

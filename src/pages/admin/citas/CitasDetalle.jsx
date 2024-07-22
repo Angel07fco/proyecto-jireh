@@ -23,7 +23,7 @@ function CitasDetalle() {
     const { state } = useLocation();
     const { cita } = state;
 
-    console.log('Cita:', cita);
+    console.log(cita)
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
@@ -173,7 +173,6 @@ function CitasDetalle() {
                         },
                     })
                 setHorarios(response.data);
-                console.log(response.data)
             } catch (error) {
                 console.log(error);
             }
@@ -251,8 +250,8 @@ function CitasDetalle() {
                         <div className="mt-10 w-full flex">
                             <div className="w-2/6">
                                 <div className="bg-primaryBlue w-[80%] ml-[10%] rounded-full mb-5">
-                                    <h1 className="bg-secondaryBlue text-primaryBlue p-3 text-3xl text-center mt-5">{cita.mascota.name}</h1>
-                                    <img src={cita.mascota.img} className="w-[100%] h-[100%]" />
+                                    <h1 className="bg-secondaryBlue text-primaryBlue p-3 text-3xl text-center mt-5">{cita.mascota}</h1>
+                                    <img src={cita.img} className="w-[100%] h-[100%]" />
                                 </div>
                             </div>
                             <div className="w-4/6">
@@ -262,19 +261,19 @@ function CitasDetalle() {
                                             <Label>Nombre mascota</Label>
                                             <Input
                                                 disabled
-                                                value={cita.mascota.name}
+                                                value={cita.mascota}
                                             />
                                         </div>
                                     </div>
 
                                     <div className="flex justify-between mb-1 mt-5">
                                         <Label>Comentarios</Label>
-                                        {comentario
+                                        {/* {comentario
                                             ?
                                                 <button onClick={() => setRenderComentarios(false)} className="text-secondaryBlue">Cancelar</button>
                                             :
                                                 <EditIcon onClick={() => setRenderComentarios(true)} className="bg-secondaryBlue text-primaryBlue rounded-full p-1" sx={{ fontSize: 25 }} />
-                                        }
+                                        } */}
                                     </div>
                                     {comentario
                                         ?
@@ -305,12 +304,12 @@ function CitasDetalle() {
 
                                     <div className="flex justify-between mb-1 mt-5">
                                         <Label>Servicio</Label>
-                                        {renderServicio
+                                        {/* {renderServicio
                                             ?
                                                 <button onClick={() => setRenderServicio(false)} className="text-secondaryBlue">Cancelar</button>
                                             :
                                                 <EditIcon onClick={() => setRenderServicio(true)} className="bg-secondaryBlue text-primaryBlue rounded-full p-1" sx={{ fontSize: 25 }} />
-                                        }
+                                        } */}
                                     </div>
                                     {renderServicio
                                         ?
@@ -349,19 +348,19 @@ function CitasDetalle() {
                                         :
                                             <Input
                                                 disabled
-                                                value={cita.servicio.name}
+                                                value={cita.servicio}
                                             />
                                     }
 
                                     <div className="mt-8 mb-8">
                                         <div className="flex justify-between bg-secondaryBlue mb-2 p-1">
                                             <h1 className="text-primaryBlue">- Detalles</h1>
-                                            {renderDetalles
+                                            {/* {renderDetalles
                                                 ?
                                                     <button onClick={() => setRenderDetalles(false)} className="text-primaryBlue">Cancelar</button>
                                                 :
                                                     <EditIcon onClick={() => setRenderDetalles(true)} className="bg-secondaryBlue text-primaryBlue rounded-full p-1" sx={{ fontSize: 25 }} />
-                                            }
+                                            } */}
                                         </div>
                                         {renderDetalles
                                             ?
@@ -473,7 +472,7 @@ function CitasDetalle() {
                                                         <Label>Médico</Label>
                                                         <Input
                                                             disabled
-                                                            value={cita.medico.nombre}
+                                                            value={cita.medico}
                                                         />
                                                     </div>
                                                     <div>

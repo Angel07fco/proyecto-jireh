@@ -46,7 +46,9 @@ function AdminCitas() {
         <AdminLayout>
             <HeaderAdmin texto="CITAS ADMIN" linkText="citas administrador" />
             <div className="px-10">
-                <Button texto="Agendar una nueva cita" />
+                <h1 className="my-10 bg-primaryBlue text-secondaryBlue p-2 text-4xl font-bold text-center">
+                    Calendario de Citas
+                </h1>
                 <CalendarCitas />
             </div>
             {loading === true ? <Loader /> :  null}

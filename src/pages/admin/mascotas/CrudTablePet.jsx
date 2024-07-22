@@ -1,9 +1,9 @@
 import CrudTableRowPet from "./CrudTableRowPet"
 
-function CrudTablePet({ data, setDataToEdit, deleteData }) {
+function CrudTablePet({ data, habilitar, deshabilitar }) {
     return (
         <div className="mt-10">
-            <h1 className="bg-secondaryBlue text-primaryBlue p-2 text-center font-medium text-xl">Tabla de Datos de Usuarios</h1>
+            <h1 className="bg-secondaryBlue text-primaryBlue p-2 text-center font-medium text-xl">Tabla de Datos de Mascotas</h1>
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                 <tr>
@@ -17,7 +17,7 @@ function CrudTablePet({ data, setDataToEdit, deleteData }) {
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Género</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Edad</th>
                     <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Peso</th>
-                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Opciones</th>
+                    <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">Estado</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,8 +30,8 @@ function CrudTablePet({ data, setDataToEdit, deleteData }) {
                             <CrudTableRowPet
                                 key={index}
                                 el={el}
-                                setDataToEdit={setDataToEdit}
-                                deleteData={deleteData}
+                                habilitar={habilitar}
+                                deshabilitar={deshabilitar}
                             />
                         ))
                     )}

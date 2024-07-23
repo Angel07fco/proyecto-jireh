@@ -54,6 +54,7 @@ import AdminGaleria from "./pages/admin/galeria/AdminGaleria";
 import AdminFaq from "./pages/admin/faq/AdminFaq";
 import BlogListado from "./pages/user/BlogListado";
 import BlogListadoInfo from "./pages/user/BlogListadoInfo";
+import OpinionCita from "./pages/user/perfil/citas/OpinionCita";
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
         <Route path='/historial-medico' element={<HistorialMedico />} />
         <Route path='/historial-citas' element={<HistorialCitas />} />
         <Route path='/edit-cita' element={<EditCita />} />
+        <Route path='/opinion-cita' element={<OpinionCita />} />
         <Route path='/calculo-alimento' element={<Matematicas />} />
         <Route path='/cuenta' element={<ProductosComprados />} />
       </Route>

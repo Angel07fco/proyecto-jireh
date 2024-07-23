@@ -124,6 +124,11 @@ function HistorialCitas() {
 }
 
 function CardCitasRealizadas({ img, cita, mascota, icono, servicio }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/opinion-cita", { state: { cita } });
+  };
   return (
     <div className="w-full bg-white border border-gray-300 h-auto mb-5 flex flex-col rounded-xl shadow-md">
       <div className="w-full flex flex-row">
@@ -137,7 +142,10 @@ function CardCitasRealizadas({ img, cita, mascota, icono, servicio }) {
           </div>
         </div>
         <div className="w-2/12 flex justify-center items-center pr-10">
-          <button className="w-full group relative px-4 py-2 font-medium text-secondaryBlue transition-colors duration-[400ms] hover:text-secondaryBlue">
+          <button
+            onClick={handleClick}
+            className="w-full group relative px-4 py-2 font-medium text-secondaryBlue transition-colors duration-[400ms] hover:text-secondaryBlue"
+          >
             <span>Opinar</span>
             <span className="absolute left-0 top-0 h-[2px] w-0 bg-secondaryBlue transition-all duration-100 group-hover:w-full" />
             <span className="absolute right-0 top-0 h-0 w-[2px] bg-secondaryBlue transition-all delay-100 duration-100 group-hover:h-full" />

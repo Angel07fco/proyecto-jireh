@@ -42,8 +42,16 @@ function OpinionCita() {
                 {loading && <Loader /> }
                 <div className="w-full h-[100vh] overflow-y-scroll">
                     <div className="mx-10">
-                        <h1 className="bg-secondaryBlue text-primaryBlue p-3 text-3xl text-center mt-5">Opinión sobre mi cita</h1>
-
+                        <h1 className="bg-secondaryBlue text-primaryBlue p-3 text-3xl text-center mt-5">Opinión de la cita</h1>
+                        <div className='w-full'>
+                            <iframe
+                                src="https://concrete-compressive-strength-1.onrender.com/"
+                                title="Embedded Page"
+                                width="100%"
+                                height="600px"
+                                style={{ border: 'none' }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,17 +12,20 @@ import Danger from "../../../components/Ui/Alertas/Danger";
 function HistorialCitas() {
   const token = localStorage.getItem("token");
   const [user, setUser] = useState("");
-  const [datos, setDatos] = useState([]);
-  const [datos2, setDatos2] = useState([]);
+  const [proximas, setProximas] = useState([]);
+  const [realizadas, setRealizadas] = useState([]);
+  const [enVivo, setEnVivo] = useState([]);
+  const [enProceso, setEnProceso] = useState([]);
+  const [citasCalificadas, setCitasCalificadas] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (token) {
       axios
         .get(`https://backend-jireh.onrender.com/api/v1/user/obtenerusuario/${token}`, {
-            headers: {
-                "x-access-token": token
-            },
+          headers: {
+            "x-access-token": token
+          },
         })
         .then(({ data }) => setUser(data))
         .catch((error) => console.log(error));
@@ -33,28 +36,18 @@ function HistorialCitas() {
     if (user._id) {
       setLoading(true);
       axios
-        .get(`https://backend-jireh.onrender.com/api/v1/cita/proximas/${user._id}`, {
-            headers: {
-                "x-access-token": token
-            },
+        .get(`https://backend-jireh.onrender.com/api/v1/cita/${user._id}`, {
+          headers: {
+            "x-access-token": token
+          },
         })
         .then(({ data }) => {
-          setDatos(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setLoading(false);
-        });
-
-      axios
-        .get(`https://backend-jireh.onrender.com/api/v1/cita/realizadas/${user._id}`, {
-            headers: {
-                "x-access-token": token
-            },
-        })
-        .then(({ data }) => {
-          setDatos2(data);
+          console.log("Citas recibidas: ", data);  // Log para verificar la respuesta de la API
+          setProximas(data.filter(cita => cita.estado === 'proxima'));
+          setRealizadas(data.filter(cita => cita.estado === 'realizada' && cita.opinionUsuario === false));
+          setEnVivo(data.filter(cita => cita.estado === 'en vivo'));
+          setEnProceso(data.filter(cita => cita.estado === 'en proceso de finalizar'));
+          setCitasCalificadas(data.filter(cita => cita.opinionUsuario === true));
           setLoading(false);
         })
         .catch((error) => {
@@ -62,7 +55,7 @@ function HistorialCitas() {
           setLoading(false);
         });
     }
-  }, [user, datos, datos2]);
+  }, [user]);
 
   return (
     <Layout>
@@ -74,32 +67,73 @@ function HistorialCitas() {
             <h1 className="my-5 bg-primaryBlue text-secondaryBlue p-2 text-4xl font-bold text-center">
               Mis citas
             </h1>
-            {datos2.length > 0 && (
-              <h1 className="mb-3 text-secondaryBlue font-bold">Citas que esperan tu opinión</h1>
+            {enVivo.length > 0 && (
+              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas en vivo</h1>
             )}
-            {datos2.length > 0 && (
-              datos2.map(cita2 => (
-                <CardCitasRealizadas
-                  key={cita2._id}
-                  id={cita2._id}
-                  cita={cita2}
-                  mascota={cita2.mascota.name}
-                  servicio={cita2.servicio.name}
-                  img={cita2.mascota.img}
-                  icono={cita2.servicio.icono}
+            {enVivo.length > 0 && (
+              enVivo.map(cita => (
+                <CardCitaVivo
+                  key={cita._id}
+                  id={cita._id}
+                  cita={cita}
+                  mascota={cita.mascota.name}
+                  servicio={cita.servicio.name}
+                  medico={cita.medico.nombre}
+                  fecha={cita.fecha}
+                  hora={cita.hora}
+                  img={cita.mascota.img}
+                  icono={cita.servicio.icono}
+                  comentarios={cita.comentarios}
+                  diaAgendado={cita.citaCreated}
                 />
               ))
             )}
-            {datos2.length > 0 && (
-              <h1 className="mb-3 text-secondaryBlue font-bold">Citas proximas</h1>
+            {enProceso.length > 0 && (
+              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas en proceso de finalizar</h1>
             )}
-            {datos.length === 0 ? (
-              <div className="flex flex-col justify-center items-center">
+            {enProceso.length > 0 && (
+              enProceso.map(cita => (
+                <CardCitaVivo
+                  key={cita._id}
+                  id={cita._id}
+                  cita={cita}
+                  mascota={cita.mascota.name}
+                  servicio={cita.servicio.name}
+                  medico={cita.medico.nombre}
+                  fecha={cita.fecha}
+                  hora={cita.hora}
+                  img={cita.mascota.img}
+                  icono={cita.servicio.icono}
+                  comentarios={cita.comentarios}
+                  diaAgendado={cita.citaCreated}
+                />
+              ))
+            )}
+            {realizadas.length > 0 && (
+              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas que esperan tu opinión</h1>
+            )}
+            {realizadas.length > 0 && (
+              realizadas.map(cita => (
+                <CardCitasRealizadas
+                  key={cita._id}
+                  id={cita._id}
+                  cita={cita}
+                  mascota={cita.mascota.name}
+                  servicio={cita.servicio.name}
+                  fecha={cita.fecha}
+                  img={cita.mascota.img}
+                  icono={cita.servicio.icono}
+                />
+              ))
+            )}
+            <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas próximas</h1>
+            {proximas.length === 0 ? (
+              <div className="flex flex-col justify-center items-center my-10">
                 <EventBusyIcon sx={{ fontSize: 60 }} className="text-secondaryBlue" />
                 <h1 className="font-bold text-secondaryBlue text-lg mt-3">No tienes ninguna cita agendada en este momento.</h1>
               </div>
             ) : (
-              datos.map(cita => (
+              proximas.map(cita => (
                 <CardCita
                   key={cita._id}
                   id={cita._id}
@@ -116,6 +150,23 @@ function HistorialCitas() {
                 />
               ))
             )}
+            {citasCalificadas.length > 0 && (
+              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas que ya opine</h1>
+            )}
+            {citasCalificadas.length > 0 && (
+              citasCalificadas.map(cita => (
+                <CardCitasOpinion
+                  key={cita._id}
+                  id={cita._id}
+                  cita={cita}
+                  mascota={cita.mascota.name}
+                  servicio={cita.servicio.name}
+                  fecha={cita.fecha}
+                  img={cita.mascota.img}
+                  icono={cita.servicio.icono}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>
@@ -123,7 +174,7 @@ function HistorialCitas() {
   );
 }
 
-function CardCitasRealizadas({ img, cita, mascota, icono, servicio }) {
+function CardCitasRealizadas({ img, cita, mascota, icono, servicio, fecha }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -138,7 +189,7 @@ function CardCitasRealizadas({ img, cita, mascota, icono, servicio }) {
         <div className="w-8/12 flex">
           <div className="flex items-center">
             <img className="w-6 h-6" src={icono} alt={`Servicio ${servicio}`} />
-            <h1 className="ml-2 text-secondaryBlue text-md">Tu cita con el servicio {servicio} espera tu opinión.</h1>
+            <h1 className="ml-2 text-secondaryBlue text-md">Tu cita con el servicio {servicio} del dia {fecha} espera tu opinión.</h1>
           </div>
         </div>
         <div className="w-2/12 flex justify-center items-center pr-10">
@@ -147,6 +198,41 @@ function CardCitasRealizadas({ img, cita, mascota, icono, servicio }) {
             className="w-full group relative px-4 py-2 font-medium text-secondaryBlue transition-colors duration-[400ms] hover:text-secondaryBlue"
           >
             <span>Opinar</span>
+            <span className="absolute left-0 top-0 h-[2px] w-0 bg-secondaryBlue transition-all duration-100 group-hover:w-full" />
+            <span className="absolute right-0 top-0 h-0 w-[2px] bg-secondaryBlue transition-all delay-100 duration-100 group-hover:h-full" />
+            <span className="absolute bottom-0 right-0 h-[2px] w-0 bg-secondaryBlue transition-all delay-200 duration-100 group-hover:w-full" />
+            <span className="absolute bottom-0 left-0 h-0 w-[2px] bg-secondaryBlue transition-all delay-300 duration-100 group-hover:h-full" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CardCitasOpinion({ img, cita, mascota, icono, servicio, fecha }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/opinion-cita", { state: { cita } });
+  };
+  return (
+    <div className="w-full bg-white border border-gray-300 h-auto mb-5 flex flex-col rounded-xl shadow-md">
+      <div className="w-full flex flex-row">
+        <div className="w-2/12 flex justify-center items-center my-2">
+          <img className="w-14 h-14" src={img} alt={`Mascota ${mascota}`} />
+        </div>
+        <div className="w-8/12 flex">
+          <div className="flex items-center">
+            <img className="w-6 h-6" src={icono} alt={`Servicio ${servicio}`} />
+            <h1 className="ml-2 text-secondaryBlue text-md">Tu cita con el servicio {servicio} del dia {fecha} espera tu opinión.</h1>
+          </div>
+        </div>
+        <div className="w-2/12 flex justify-center items-center pr-10">
+          <button
+            onClick={handleClick}
+            className="w-full group relative px-4 py-2 font-medium text-secondaryBlue transition-colors duration-[400ms] hover:text-secondaryBlue"
+          >
+            <span>Ver Opinión</span>
             <span className="absolute left-0 top-0 h-[2px] w-0 bg-secondaryBlue transition-all duration-100 group-hover:w-full" />
             <span className="absolute right-0 top-0 h-0 w-[2px] bg-secondaryBlue transition-all delay-100 duration-100 group-hover:h-full" />
             <span className="absolute bottom-0 right-0 h-[2px] w-0 bg-secondaryBlue transition-all delay-200 duration-100 group-hover:w-full" />
@@ -287,6 +373,45 @@ function CardCita({ cita, id, mascota, servicio, comentarios, medico, fecha, hor
           </button>
         </div>
       </Modal>
+    </div>
+  );
+}
+
+function CardCitaVivo({ cita, id, mascota, servicio, comentarios, medico, fecha, hora, img, icono, diaAgendado }) {
+  return (
+    <div className="w-full bg-white border border-gray-300 h-auto mb-5 flex flex-col rounded-xl shadow-md">
+      <div className="w-full flex pl-10 py-5">
+        <h1 className="font-bold text-secondaryBlue">{fecha}</h1>
+        <h1 className="px-5">|</h1>
+        <h1 className="font-bold text-secondaryBlue">{hora}</h1>
+      </div>
+      <div className="w-full">
+        <hr className="border-t border-gray-300" />
+      </div>
+      <div className="w-full flex flex-row">
+        <div className="w-2/12 flex justify-center items-center my-2">
+          <img className="w-28 h-28" src={img} alt={`Mascota ${mascota}`} />
+        </div>
+        <div className="w-8/12 mt-5 flex">
+          <div className="w-1/2">
+            <div className="flex items-center">
+              <img className="w-8 h-8" src={icono} alt={`Servicio ${servicio}`} />
+              <h1 className="ml-2 text-secondaryBlue font-bold text-xl">{servicio}</h1>
+            </div>
+            <h1 className="font-medium mt-2">Lo atiende: MVZ. {medico}</h1>
+            <h1 className="font-medium mt-2">Comentarios: {comentarios}</h1>
+          </div>
+          <div className="w-1/2">
+            <h1 className="font-medium">Fue agendada el:</h1>
+            <h1 className="font-bold">{diaAgendado}</h1>
+          </div>
+        </div>
+        <div className="w-2/12 mt-5 justify-center pr-10">
+          <div className="bg-white flex flex-col items-center justify-center space-y-4">
+
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

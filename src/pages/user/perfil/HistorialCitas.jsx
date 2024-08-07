@@ -8,6 +8,7 @@ import EventBusyIcon from '@mui/icons-material/EventBusy';
 import Loader from "../../../components/Ui/Loader";
 import Success from "../../../components/Ui/Alertas/Success";
 import Danger from "../../../components/Ui/Alertas/Danger";
+import moment from "moment";
 
 function HistorialCitas() {
   const token = localStorage.getItem("token");
@@ -15,7 +16,6 @@ function HistorialCitas() {
   const [proximas, setProximas] = useState([]);
   const [realizadas, setRealizadas] = useState([]);
   const [enVivo, setEnVivo] = useState([]);
-  const [enProceso, setEnProceso] = useState([]);
   const [citasCalificadas, setCitasCalificadas] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -42,12 +42,38 @@ function HistorialCitas() {
           },
         })
         .then(({ data }) => {
-          console.log("Citas recibidas: ", data);  // Log para verificar la respuesta de la API
-          setProximas(data.filter(cita => cita.estado === 'proxima'));
-          setRealizadas(data.filter(cita => cita.estado === 'realizada' && cita.opinionUsuario === false));
-          setEnVivo(data.filter(cita => cita.estado === 'en vivo'));
-          setEnProceso(data.filter(cita => cita.estado === 'en proceso de finalizar'));
-          setCitasCalificadas(data.filter(cita => cita.opinionUsuario === true));
+          console.log("Citas recibidas: ", data);
+
+          const ahora = moment();
+
+          // Clasificar citas usando la lógica de tiempo
+          const citasProximas = data.filter(cita => {
+            const citaInicio = moment(`${cita.fecha} ${cita.hora.split('-')[0]}`, 'DD-MM-YYYY HH:mm');
+            return citaInicio.isAfter(ahora);
+          });
+
+          const citasRealizadas = data.filter(cita => {
+            const citaFin = moment(`${cita.fecha} ${cita.hora.split('-')[1]}`, 'DD-MM-YYYY HH:mm');
+            return citaFin.isBefore(ahora) && !cita.opinionUsuario;
+          });
+
+          const citasEnVivo = data.filter(cita => {
+            const [horaInicio, horaFin] = cita.hora.split('-');
+            const citaInicio = moment(`${cita.fecha} ${horaInicio}`, 'DD-MM-YYYY HH:mm');
+            const citaFin = moment(`${cita.fecha} ${horaFin}`, 'DD-MM-YYYY HH:mm');
+            return citaInicio.isSameOrBefore(ahora) && citaFin.isAfter(ahora);
+          });
+
+          const citasYaOpinadas = data.filter(cita => {
+            const citaFin = moment(`${cita.fecha} ${cita.hora.split('-')[1]}`, 'DD-MM-YYYY HH:mm');
+            return citaFin.isBefore(ahora) && cita.opinionUsuario;
+          });
+
+          setProximas(citasProximas);
+          setRealizadas(citasRealizadas);
+          setEnVivo(citasEnVivo);
+          setCitasCalificadas(citasYaOpinadas);
+
           setLoading(false);
         })
         .catch((error) => {
@@ -68,7 +94,7 @@ function HistorialCitas() {
               Mis citas
             </h1>
             {enVivo.length > 0 && (
-              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas en vivo</h1>
+              <h1 className="mb-3 text-secondaryBlue pl-2 bg-yellow-500 font-bold text-lg">Citas en vivo</h1>
             )}
             {enVivo.length > 0 && (
               enVivo.map(cita => (
@@ -88,29 +114,8 @@ function HistorialCitas() {
                 />
               ))
             )}
-            {enProceso.length > 0 && (
-              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas en proceso de finalizar</h1>
-            )}
-            {enProceso.length > 0 && (
-              enProceso.map(cita => (
-                <CardCitaVivo
-                  key={cita._id}
-                  id={cita._id}
-                  cita={cita}
-                  mascota={cita.mascota.name}
-                  servicio={cita.servicio.name}
-                  medico={cita.medico.nombre}
-                  fecha={cita.fecha}
-                  hora={cita.hora}
-                  img={cita.mascota.img}
-                  icono={cita.servicio.icono}
-                  comentarios={cita.comentarios}
-                  diaAgendado={cita.citaCreated}
-                />
-              ))
-            )}
             {realizadas.length > 0 && (
-              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas que esperan tu opinión</h1>
+              <h1 className="mb-3 text-secondaryBlue pl-2 bg-blue-500 font-bold text-lg">Citas que esperan tu opinión</h1>
             )}
             {realizadas.length > 0 && (
               realizadas.map(cita => (
@@ -126,11 +131,11 @@ function HistorialCitas() {
                 />
               ))
             )}
-            <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas próximas</h1>
+            <h1 className="mb-3 text-secondaryBlue font-bold pl-2 bg-red-500 text-lg">Citas próximas</h1>
             {proximas.length === 0 ? (
               <div className="flex flex-col justify-center items-center my-10">
                 <EventBusyIcon sx={{ fontSize: 60 }} className="text-secondaryBlue" />
-                <h1 className="font-bold text-secondaryBlue text-lg mt-3">No tienes ninguna cita agendada en este momento.</h1>
+                <h1 className="font-bold text-secondaryBlue text-lg mt-3">No tienes ninguna cita proxima agendada en este momento.</h1>
               </div>
             ) : (
               proximas.map(cita => (
@@ -151,7 +156,7 @@ function HistorialCitas() {
               ))
             )}
             {citasCalificadas.length > 0 && (
-              <h1 className="mb-3 text-secondaryBlue font-bold text-lg">Citas que ya opine</h1>
+              <h1 className="mb-3 text-secondaryBlue font-bold pl-2 bg-green-500 text-lg">Citas que ya opiné</h1>
             )}
             {citasCalificadas.length > 0 && (
               citasCalificadas.map(cita => (
@@ -224,7 +229,7 @@ function CardCitasOpinion({ img, cita, mascota, icono, servicio, fecha }) {
         <div className="w-8/12 flex">
           <div className="flex items-center">
             <img className="w-6 h-6" src={icono} alt={`Servicio ${servicio}`} />
-            <h1 className="ml-2 text-secondaryBlue text-md">Tu cita con el servicio {servicio} del dia {fecha} espera tu opinión.</h1>
+            <h1 className="ml-2 text-secondaryBlue text-md">Tu cita con el servicio {servicio} del dia {fecha} ya ha sido opinada.</h1>
           </div>
         </div>
         <div className="w-2/12 flex justify-center items-center pr-10">

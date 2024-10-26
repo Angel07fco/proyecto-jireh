@@ -1,36 +1,43 @@
-function CrudTableRowUser({el, habilitar, deshabilitar}) {
-
+function CrudTableRowUser({ el, habilitar, deshabilitar }) {
   let { _id, user, img, email, phone, rol, accountStatus } = el;
 
   return (
     <tr>
-      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{user}</td>
+      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+        {user}
+      </td>
       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
         <img src={img} className="w-12 h-12" />
       </td>
-      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{email}</td>
-      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{phone}</td>
-      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{rol}</td>
       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-        {
-          accountStatus === "activo"
-          ?
-            <div
-                onClick={() => deshabilitar(_id)}
-                className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60"
-            >
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                <h2 className="text-sm font-normal text-emerald-500">{accountStatus}</h2>
-            </div>
-          :
-            <div
-                onClick={() => habilitar(_id)}
-                className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60"
-            >
-                <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
-                <h2 className="text-sm font-normal text-red-500">{accountStatus}</h2>
-            </div>
-        }
+        {email}
+      </td>
+      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+        {phone}
+      </td>
+      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+        {rol}
+      </td>
+      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+        {accountStatus === "activo" ? (
+          <div
+            onClick={() => deshabilitar(_id)}
+            className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            <h2 className="text-sm font-normal text-emerald-500">
+              {accountStatus}
+            </h2>
+          </div>
+        ) : (
+          <div
+            onClick={() => habilitar(_id)}
+            className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+            <h2 className="text-sm font-normal text-red-500">suspendido</h2>
+          </div>
+        )}
       </td>
       {/* <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
           <div className="flex items-center gap-x-6">
@@ -51,7 +58,7 @@ function CrudTableRowUser({el, habilitar, deshabilitar}) {
           </div>
       </td> */}
     </tr>
-  )
+  );
 }
 
-export default CrudTableRowUser
+export default CrudTableRowUser;

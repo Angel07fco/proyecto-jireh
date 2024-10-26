@@ -26,18 +26,18 @@ function Home() {
       <section className="md:mx-40 mx-10">
         {errors && <div>Error: {errors}</div>}
         {loading && <Loader />}
-        <div className="flex my-20">
-          <div className="w-2/5">
+        <div className="md:flex my-10 md:my-20">
+          <div className="md:w-2/5">
             <img src="https://res.cloudinary.com/dl8odylct/image/upload/v1711234743/jireh/serviciosHome_phzz7e.png" />
           </div>
-          <div className="w-3/5 pl-10">
+          <div className="md:w-3/5">
             <h1 className="font-bold text-4xl text-secondaryBlue">
               Servicios para el cuidado de tu mascota
             </h1>
             <h2 className="font-bold mt-2">
               Desde consulta médica general hasta especialidades y urgencias.
             </h2>
-            <div className="w-full grid grid-cols-5 gap-10 mt-10">
+            <div className="w-full grid grid-cols-3 md:grid-cols-5 gap-10 mt-10">
               {datos.map((servicio) => (
                 <ServiceIcon
                   key={servicio.id}

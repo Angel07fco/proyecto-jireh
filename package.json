@@ -30,6 +30,8 @@
     "react-time-picker": "^6.6.0",
     "react-tooltip": "^5.26.3",
     "tailwind-merge": "^2.3.0",
+    "vite-plugin-pwa": "^0.20.5",
+    "workbox-window": "^7.1.0",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

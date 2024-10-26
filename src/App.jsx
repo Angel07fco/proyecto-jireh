@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import './App.css';
+import "./App.css";
 
-import Home from './pages/user/Home';
+import Home from "./pages/user/Home";
 import NotFound from "./pages/NotFound";
 import Citas from "./pages/user/Citas";
 import Servicios from "./pages/user/Servicios";
@@ -55,79 +55,87 @@ import AdminFaq from "./pages/admin/faq/AdminFaq";
 import BlogListado from "./pages/user/BlogListado";
 import BlogListadoInfo from "./pages/user/BlogListadoInfo";
 import OpinionCita from "./pages/user/perfil/citas/OpinionCita";
+import SplashScreen from "./pages/SplashScreen";
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/citas' element={<Citas />} />
-      <Route path='/servicios' element={<Servicios />} />
-      <Route path='/servicio-seleccionado' element={<ServicioSeleccionado />} />
-      <Route path='/' element={<Tienda />} />
-      <Route path='/producto-seleccionado/:nombre' element={<ProductoSeleccionado />} />
-      <Route path='/quienes-somos' element={<QuienesSomos />} />
-      <Route path='/contacto' element={<Contacto />} />
-      <Route path='/blog' element={<Blog />} />
-      <Route path='/blog-listado' element={<BlogListado />} />
-      <Route path='/blog-listado-detalles' element={<BlogListadoInfo />} />
-      <Route path='/galeria' element={<Galeria />} />
-      <Route path='/preguntas-frecuentes' element={<PreguntasFrecuentes />} />
+      <Route path="/" element={<SplashScreen />} />
+      <Route path="/inicio" element={<Home />} />
+      <Route path="/citas" element={<Citas />} />
+      <Route path="/servicios" element={<Servicios />} />
+      <Route path="/servicio-seleccionado" element={<ServicioSeleccionado />} />
+      <Route path="/" element={<Tienda />} />
+      <Route
+        path="/producto-seleccionado/:nombre"
+        element={<ProductoSeleccionado />}
+      />
+      <Route path="/quienes-somos" element={<QuienesSomos />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog-listado" element={<BlogListado />} />
+      <Route path="/blog-listado-detalles" element={<BlogListadoInfo />} />
+      <Route path="/galeria" element={<Galeria />} />
+      <Route path="/preguntas-frecuentes" element={<PreguntasFrecuentes />} />
 
-      <Route element={<ProtectedRoute />} >
-        <Route path='/cuenta' element={<Cuenta />} />
-        <Route path='/perfil' element={<Perfil />} />
-        <Route path='/mascotas' element={<Mascotas />} />
-        <Route path='/edit-mascota' element={<EditMascota />} />
-        <Route path='/historial-medico' element={<HistorialMedico />} />
-        <Route path='/historial-citas' element={<HistorialCitas />} />
-        <Route path='/edit-cita' element={<EditCita />} />
-        <Route path='/opinion-cita' element={<OpinionCita />} />
-        <Route path='/calculo-alimento' element={<Matematicas />} />
-        <Route path='/cuenta' element={<ProductosComprados />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/cuenta" element={<Cuenta />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/mascotas" element={<Mascotas />} />
+        <Route path="/edit-mascota" element={<EditMascota />} />
+        <Route path="/historial-medico" element={<HistorialMedico />} />
+        <Route path="/historial-citas" element={<HistorialCitas />} />
+        <Route path="/edit-cita" element={<EditCita />} />
+        <Route path="/opinion-cita" element={<OpinionCita />} />
+        <Route path="/calculo-alimento" element={<Matematicas />} />
+        <Route path="/cuenta" element={<ProductosComprados />} />
       </Route>
 
-      <Route element={<ProtectedRouteAdmin />} >
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/admin-citas' element={<AdminCitas />} />
-        <Route path='/cita-detalles' element={<CitasDetalle />} />
-        <Route path='/admin-servicios' element={<AdminServicios />} />
-        <Route path='/admin-blog' element={<AdminBlog />} />
-        <Route path='/admin-galeria' element={<AdminGaleria />} />
-        <Route path='/admin' element={<AdminProductos />} />
-        <Route path='/admin-usuarios' element={<AdminUsuarios />} />
-        <Route path='/admin-mascotas' element={<AdminMascotas />} />
-        <Route path='/admin-cuenta' element={<AdminCuenta />} />
-        <Route path='/admin-faq' element={<AdminFaq />} />
-        <Route path='/admin-exit' element={<Exit />} />
+      <Route element={<ProtectedRouteAdmin />}>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin-citas" element={<AdminCitas />} />
+        <Route path="/cita-detalles" element={<CitasDetalle />} />
+        <Route path="/admin-servicios" element={<AdminServicios />} />
+        <Route path="/admin-blog" element={<AdminBlog />} />
+        <Route path="/admin-galeria" element={<AdminGaleria />} />
+        <Route path="/admin" element={<AdminProductos />} />
+        <Route path="/admin-usuarios" element={<AdminUsuarios />} />
+        <Route path="/admin-mascotas" element={<AdminMascotas />} />
+        <Route path="/admin-cuenta" element={<AdminCuenta />} />
+        <Route path="/admin-faq" element={<AdminFaq />} />
+        <Route path="/admin-exit" element={<Exit />} />
       </Route>
 
-      <Route path='/iniciar-sesion' element={<Login />} />
-      <Route path='/registro' element={<Register />} />
-      <Route path='/confirmar-cuenta' element={<ConfirmAccount />} />
-      <Route path='/metodo-recuperar' element={<MethodPassword />} />
-      <Route path='/recuperar-contraseña' element={<Password />} />
-      <Route path='/recuperar-contraseña-pregunta' element={<PasswordQuestion />} />
-      <Route path='/confirmar-codigo' element={<UnlockAccount />} />
-      <Route path='/pregunta-secreta' element={<UnlockQuestionSecret />} />
-      <Route path='/cambiar-contrasena' element={<CambiarPassword />} />
+      <Route path="/iniciar-sesion" element={<Login />} />
+      <Route path="/registro" element={<Register />} />
+      <Route path="/confirmar-cuenta" element={<ConfirmAccount />} />
+      <Route path="/metodo-recuperar" element={<MethodPassword />} />
+      <Route path="/recuperar-contraseña" element={<Password />} />
+      <Route
+        path="/recuperar-contraseña-pregunta"
+        element={<PasswordQuestion />}
+      />
+      <Route path="/confirmar-codigo" element={<UnlockAccount />} />
+      <Route path="/pregunta-secreta" element={<UnlockQuestionSecret />} />
+      <Route path="/cambiar-contrasena" element={<CambiarPassword />} />
 
-      <Route path='/aviso&de&privacidad' element={<AvisoPrivacidad />} />
-      <Route path='/terminos&condiciones' element={<TerminosCondiciones />} />
-      <Route path='/politica&de&cookies' element={<PoliticaCookies />} />
+      <Route path="/aviso&de&privacidad" element={<AvisoPrivacidad />} />
+      <Route path="/terminos&condiciones" element={<TerminosCondiciones />} />
+      <Route path="/politica&de&cookies" element={<PoliticaCookies />} />
 
-      <Route path='/preguntas&frecuentes' element={<PreguntasFrecuentes />} />
+      <Route path="/preguntas&frecuentes" element={<PreguntasFrecuentes />} />
 
-      <Route path='*' element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
 
       {/* Crud Mscotas */}
-      <Route path='/crud-mascotas' element={<CrudMascotas />} />
+      <Route path="/crud-mascotas" element={<CrudMascotas />} />
 
       {/* Rutas para paginas de prueba
         <Route path="/image-cloudinary" element={<ImageCloudinary />} />
         <Route path="/calendar" element={<Calendar />} />
       */}
     </Routes>
-  )
+  );
 }
 
 export default App;
